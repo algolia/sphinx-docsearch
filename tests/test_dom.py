@@ -1,0 +1,24 @@
+"""Test the DOM."""
+
+from pathlib import Path
+
+import pytest
+from sphinx.application import Sphinx
+
+from .utils import read_as_html
+
+
+@pytest.mark.sphinx(
+    "html",
+    confoverrides={
+        "extensions": ["sphinxawesome.docsearch"],
+        "docsearch_container": "docsearch-test",
+    },
+)
+def test_no_builtin_search(app: Sphinx) -> None:
+    """It adds all the DocSearch assets to the HTML output."""
+    app.build()
+
+    test_file = read_as_html(Path(app.outdir) / "index.html")
+    search = test_file.select("#docsearch-test")
+    assert len(search) == 1

@@ -1,0 +1,6 @@
+dist
+.history
+__pycache__
+docs/public
+.coverage
+.env

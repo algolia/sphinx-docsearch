@@ -1,0 +1,17 @@
+"""Test builder."""
+
+import os
+from pathlib import Path
+
+import pytest
+from sphinx.application import Sphinx
+
+
+@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinxawesome.docsearch"]})
+def test_no_builtin_search(app: Sphinx) -> None:
+    """It adds all the DocSearch assets to the HTML output."""
+    app.build()
+    if hasattr(app.builder, "search"):
+        assert app.builder.search is False
+    assert not os.path.exists(Path(app.outdir) / "search.html")
+    assert not os.path.exists(Path(app.outdir) / "searchindex.js")

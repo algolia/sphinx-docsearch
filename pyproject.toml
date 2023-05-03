@@ -1,0 +1,74 @@
+[tool.poetry]
+name = "sphinxawesome-docsearch"
+version = "0.1.0"
+description = "A Sphinx extension to replace the builtin search with Algolia DocSearch"
+authors = ["Kai Welke <kai687@pm.me>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+  {include = "sphinxawesome", from = "src"}
+]
+classifiers = [
+  'Programming Language :: Python',
+  'Framework :: Sphinx',
+  'Framework :: Sphinx :: Extension',
+  'Topic :: Documentation',
+  'Topic :: Documentation :: Sphinx',
+  'Topic :: Software Development :: Documentation'
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sphinx = ">5"
+
+[tool.poetry.group.lint.dependencies]
+ruff = "*"
+black = "*"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+sphinx-autobuild = "*"
+python-dotenv = "*"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+beautifulsoup4 = "^4.12.2"
+pytest-cov = "^4.0.0"
+mypy = "^1.2.0"
+types-beautifulsoup4 = "^4.12.0.4"
+
+[tool.coverage.path]
+source = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["sphinxawesome.docsearch"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
+
+[tool.mypy]
+show_error_codes = true
+show_error_context = true
+pretty = true
+strict = true
+show_column_numbers = true
+warn_unreachable = true
+warn_unused_ignores = true
+
+[tool.ruff]
+select = ["E", "F", "B", "Q", "W", "I", "C90", "D", "UP", "YTT", "S", "ANN", "SIM", "N"]
+# Ignore conflicting rules
+ignore = ["D203", "D213", "E501"]
+target-version = "py38"
+extend-exclude = ["*.pyi"]
+
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
