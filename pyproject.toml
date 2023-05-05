@@ -25,12 +25,11 @@ sphinx = ">5"
 ruff = "*"
 black = "*"
 
-[tool.poetry.group.docs]
-optional = true
-
 [tool.poetry.group.docs.dependencies]
 sphinx-autobuild = "*"
 python-dotenv = "*"
+furo = "^2023.3.27"
+myst-parser = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.3.1"

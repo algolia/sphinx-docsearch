@@ -1,1 +1,2 @@
-<div id="{{ docsearch_container|default('docsearch') }}" style="display:flex;justify-content:center"></div>
+{%- set _container = docsearch_container.replace('#', '')|default('docsearch') -%}
+<div id="{{ _container }}" style="display:flex;justify-content:center"></div>
