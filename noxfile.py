@@ -33,7 +33,7 @@ def install_with_requirements(s: Session, group: str = "dev", *args: str) -> Non
 @session(python=python_versions)
 def docs(s: Session) -> None:
     """Build the docs."""
-    args = ["-aWTE", "docs", "docs/public"]
+    args = ["-aWTE", "docs", "docs/_dist"]
     deps = [
         "sphinx",
         "python-dotenv",
@@ -55,6 +55,17 @@ def docs(s: Session) -> None:
     install_with_requirements(s, "docs", ".", *deps)
     s.run(sphinx_build, *args)
 
+@session(python=python_versions[0])
+def check_links(s: Session) -> None:
+    """Check links in docs."""
+    args = ["-b", "linkcheck", "docs", "docs/_dist/_links"]
+    deps = ["sphinx", "myst-parser", "furo", "sphinx_rtd_theme", "sphinx_book_theme", "python-dotenv"]
+
+    if s.posargs:
+        args = s.posargs + args
+
+    install_with_requirements(s, "docs", ".", *deps)
+    s.run("sphinx-build", *args)
 
 @session
 def fmt(s: Session) -> None:
@@ -118,4 +129,4 @@ def publish(s: Session) -> None:
 @session(python=False)
 def clean(s: Session) -> None:
     """Delete artifacts."""
-    s.run("rm", "-rv", "dist", "docs/public")
+    s.run("rm", "-rv", "dist", "docs/_dist")
