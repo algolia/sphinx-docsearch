@@ -19,14 +19,12 @@ docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
 docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
 
 # DocSearch custom CSS examples for multiple Sphinx themes
-multi_theme = {
-    "furo": "furo-docsearch-custom.css"
-}
+multi_theme = {"furo": "furo-docsearch-custom.css"}
 
 html_static_path = ["static"]
 
 for theme in multi_theme:
-    if tags.has(theme):
+    if tags.has(theme):  # noqa
         html_theme = theme
         html_css_files = [multi_theme[theme]]
 else:

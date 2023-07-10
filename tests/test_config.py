@@ -5,8 +5,8 @@ from io import StringIO
 from pathlib import Path
 
 import pytest
-from sphinx.application import Sphinx
 import sphinx_docsearch
+from sphinx.application import Sphinx
 
 
 def test_returns_version() -> None:

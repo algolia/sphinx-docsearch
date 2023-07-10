@@ -34,7 +34,14 @@ def install_with_requirements(s: Session, group: str = "dev", *args: str) -> Non
 def docs(s: Session) -> None:
     """Build the docs."""
     args = ["-aWTE", "docs", "docs/public"]
-    deps = ["sphinx", "python-dotenv", "furo", "myst-parser", "sphinx_rtd_theme", "sphinx_book_theme"]
+    deps = [
+        "sphinx",
+        "python-dotenv",
+        "furo",
+        "myst-parser",
+        "sphinx_rtd_theme",
+        "sphinx_book_theme",
+    ]
     sphinx_build = "sphinx-build"
 
     if "--live" in s.posargs:
@@ -81,6 +88,7 @@ def typecheck(s: Session) -> None:
     install_with_requirements(s, "dev", ".", *deps)
     s.run("mypy", ".", "--exclude", "docs")
 
+
 @session(python=False)
 def build(s: Session) -> None:
     """Build the packages using Poetry.
@@ -89,6 +97,7 @@ def build(s: Session) -> None:
     skip the virtual environment creation.
     """
     s.run("poetry", "build", external=True)
+
 
 @session(python=False)
 def publish(s: Session) -> None:
@@ -104,6 +113,7 @@ def publish(s: Session) -> None:
     """
     build(s)
     s.run("poetry", "publish", "--dry-run", external=True)
+
 
 @session(python=False)
 def clean(s: Session) -> None:
