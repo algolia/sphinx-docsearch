@@ -9,7 +9,7 @@ from sphinx.application import Sphinx
 from .utils import read_as_html
 
 
-@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinxawesome.docsearch"]})
+@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"]})
 def test_docsearch_assets(app: Sphinx) -> None:
     """It adds all the DocSearch assets to the HTML output."""
     app.build()

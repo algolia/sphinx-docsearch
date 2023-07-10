@@ -5,21 +5,21 @@ from io import StringIO
 from pathlib import Path
 
 import pytest
+import sphinx_docsearch
 from sphinx.application import Sphinx
-from sphinxawesome import docsearch
 
 
 def test_returns_version() -> None:
     """It returns the correct version."""
-    assert docsearch.__version__ == "0.1.0"
+    assert sphinx_docsearch.__version__ == "0.0.1"
 
 
-@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinxawesome.docsearch"]})
+@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"]})
 def test_docsearch_config(app: Sphinx) -> None:
     """It tests the addition of DocSearch configuration options."""
     app.build()
     assert os.path.exists(Path(app.outdir) / "index.html")
-    assert "sphinxawesome.docsearch" in app.extensions
+    assert "sphinx_docsearch" in app.extensions
     assert not app.config.docsearch_app_id
     assert not app.config.docsearch_api_key
     assert not app.config.docsearch_index_name
@@ -30,7 +30,7 @@ def test_docsearch_config(app: Sphinx) -> None:
     assert not app.config.docsearch_missing_results_url
 
 
-@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinxawesome.docsearch"]})
+@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"]})
 def test_raises_warnings(app: Sphinx, warning: StringIO) -> None:
     """It raises warnings when the required config options are missing."""
     app.build()
@@ -53,7 +53,7 @@ def test_raises_warnings(app: Sphinx, warning: StringIO) -> None:
 @pytest.mark.sphinx(
     "html",
     confoverrides={
-        "extensions": ["sphinxawesome.docsearch"],
+        "extensions": ["sphinx_docsearch"],
         "docsearch_app_id": "test_app_id",
         "docsearch_api_key": "test_api_key",
         "docsearch_index_name": "test_docsearch_index_name",

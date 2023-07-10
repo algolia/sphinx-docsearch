@@ -5,7 +5,7 @@ import pytest
 from sphinx.application import Sphinx
 
 
-@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinxawesome.docsearch"]})
+@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"]})
 def test_global_context(app: Sphinx) -> None:
     """It adds all the DocSearch configuration to global context."""
     app.build()

@@ -1,4 +1,11 @@
-"""Automate everything everywhere all at once."""
+"""Automate everything everywhere all at once.
+
+Requires [Nox](https://nox.thea.codes/).
+
+- Run `nox -ls` to list all sessions.
+- Run `nox -s <NAME>` to run the session _`<NAME>`_.
+- Run `nox -s docs -p 3.11 -- --live` to build the docs with live-reloading.
+"""
 import tempfile
 
 from nox import Session, options, session
@@ -27,7 +34,14 @@ def install_with_requirements(s: Session, group: str = "dev", *args: str) -> Non
 def docs(s: Session) -> None:
     """Build the docs."""
     args = ["-aWTE", "docs", "docs/public"]
-    deps = ["sphinx", "python-dotenv", "furo", "myst-parser"]
+    deps = [
+        "sphinx",
+        "python-dotenv",
+        "furo",
+        "myst-parser",
+        "sphinx_rtd_theme",
+        "sphinx_book_theme",
+    ]
     sphinx_build = "sphinx-build"
 
     if "--live" in s.posargs:
@@ -73,3 +87,35 @@ def typecheck(s: Session) -> None:
     deps = ["mypy", "pytest", "nox", "bs4", "types-beautifulsoup4"]
     install_with_requirements(s, "dev", ".", *deps)
     s.run("mypy", ".", "--exclude", "docs")
+
+
+@session(python=False)
+def build(s: Session) -> None:
+    """Build the packages using Poetry.
+
+    Since Poetry is installed globally,
+    skip the virtual environment creation.
+    """
+    s.run("poetry", "build", external=True)
+
+
+@session(python=False)
+def publish(s: Session) -> None:
+    """Publish this package to the Python package index (PyPI).
+
+    Since Poetry is installed globally,
+    skip the virtual environment creation.
+
+    Always build the package before publishing.
+
+    Requires the environment variable `POETRY_PYPI_TOKEN_PYPI`
+    with the token for publishing the package to PyPI.
+    """
+    build(s)
+    s.run("poetry", "publish", "--dry-run", external=True)
+
+
+@session(python=False)
+def clean(s: Session) -> None:
+    """Delete artifacts."""
+    s.run("rm", "-rv", "dist", "docs/public")
