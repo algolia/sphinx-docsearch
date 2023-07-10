@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "sphinxawesome-docsearch"
-version = "0.1.0"
-description = "A Sphinx extension to replace the builtin search with Algolia DocSearch"
-authors = ["Kai Welke <kai687@pm.me>"]
+name = "sphinx-docsearch"
+version = "0.0.1"
+description = "A Sphinx extension for replacing the built-in search with Algolia DocSearch"
+authors = ["Algolia"]
 license = "MIT"
 readme = "README.md"
 packages = [
-  {include = "sphinxawesome", from = "src"}
+  {include = "sphinx_docsearch", from = "src"}
 ]
 classifiers = [
   'Programming Language :: Python',
@@ -45,7 +45,7 @@ source = ["src"]
 
 [tool.coverage.run]
 branch = true
-source = ["sphinxawesome.docsearch"]
+source = ["sphinx_docsearch"]
 
 [tool.coverage.report]
 show_missing = true

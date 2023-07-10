@@ -11,7 +11,7 @@ from .utils import read_as_html
 @pytest.mark.sphinx(
     "html",
     confoverrides={
-        "extensions": ["sphinxawesome.docsearch"],
+        "extensions": ["sphinx_docsearch"],
         "docsearch_container": "docsearch-test",
     },
 )

@@ -7,7 +7,7 @@ import pytest
 from sphinx.application import Sphinx
 
 
-@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinxawesome.docsearch"]})
+@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"]})
 def test_no_builtin_search(app: Sphinx) -> None:
     """It adds all the DocSearch assets to the HTML output."""
     app.build()
