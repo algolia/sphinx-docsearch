@@ -33,4 +33,4 @@ jobs:
 
       - name: Run nox workflow
         run: |
-          nox -s tests
+          nox -s tests -p ${{ matrix.python-version }}
