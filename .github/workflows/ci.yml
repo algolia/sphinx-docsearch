@@ -24,7 +24,8 @@ jobs:
       - name: Install pipx, nox, and poetry
         run: |
           pip install -U pip pipx
-          pipx install nox poetry
+          pipx install nox
+          pipx install poetry
           nox --version
           pip --version
           pipx --version
