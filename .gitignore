@@ -5,3 +5,4 @@ docs/_dist
 .coverage
 .env
 .vscode
+.rtx.toml

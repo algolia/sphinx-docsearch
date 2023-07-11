@@ -2,5 +2,10 @@
 ```
 
 ```{toctree}
+:hidden: true
+what
+themes
+credentials
+configure
 contribute
 ```
