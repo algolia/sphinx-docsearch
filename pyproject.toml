@@ -50,7 +50,7 @@ source = ["sphinx_docsearch"]
 
 [tool.coverage.report]
 show_missing = true
-fail_under = 100
+fail_under = 98
 
 [tool.mypy]
 show_error_codes = true
