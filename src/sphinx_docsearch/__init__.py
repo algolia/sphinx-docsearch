@@ -61,6 +61,10 @@ def add_docsearch_assets(app: Sphinx, config: Config) -> None:
 @progress_message("DocSearch: update global context")
 def update_global_context(app: Sphinx, doctree: Node, docname: str) -> None:
     """Update global context with DocSearch configuration."""
+
+    if app.builder.format != "html":
+        return
+
     app.builder.globalcontext["docsearch_app_id"] = app.config.docsearch_app_id
     app.builder.globalcontext["docsearch_api_key"] = app.config.docsearch_api_key
     app.builder.globalcontext["docsearch_index_name"] = app.config.docsearch_index_name
