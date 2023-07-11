@@ -1,7 +1,7 @@
 dist
 .history
 __pycache__
-docs/public
+docs/_dist
 .coverage
 .env
 .vscode
