@@ -6,6 +6,7 @@
 what
 themes
 credentials
-configure
+configuration
+customization
 contribute
 ```
