@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+
+    name: Test with Python ${{ matrix.python-version }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install pipx, nox, and poetry
+        run: |
+          pip install -U pip pipx
+          pipx install nox
+          pipx install poetry
+          nox --version
+          pip --version
+          pipx --version
+          poetry --version
+
+      - name: Run tests and build docs
+        run: |
+          nox -p ${{ matrix.python-version }}
+        env:
+          DOCSEARCH_APP_ID: test
+          DOCSEARCH_API_KEY: test
+          DOCSEARCH_INDEX_NAME: test
+  lint:
+    runs-on: ubuntu-latest
+
+    name: Lint
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install pipx, nox, and poetry
+        run: |
+          pip install -U pip pipx
+          pipx install nox
+          pipx install poetry
+          nox --version
+          pip --version
+          pipx --version
+          poetry --version
+
+      - name: Lint Python code
+        run: nox -s lint
+
+      - name: Check links
+        run: nox -s check_links

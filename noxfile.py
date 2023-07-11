@@ -15,8 +15,8 @@ options.stop_on_first_error = True
 python_versions = ["3.11", "3.10", "3.9", "3.8"]
 
 
-def install_with_requirements(s: Session, group: str = "dev", *args: str) -> None:
-    """Export from Poetry for a group."""
+def install_with_group(s: Session, group: str = "dev") -> None:
+    """Install group dependencies from Poetry."""
     with tempfile.NamedTemporaryFile() as requirements:
         s.run(
             "poetry",
@@ -27,40 +27,43 @@ def install_with_requirements(s: Session, group: str = "dev", *args: str) -> Non
             requirements.name,
             external=True,
         )
-        s.install(*args)
+        s.install("-r", requirements.name)
+        s.install(".")
 
 
 @session(python=python_versions)
 def docs(s: Session) -> None:
     """Build the docs."""
-    args = ["-aWTE", "docs", "docs/public"]
-    deps = [
-        "sphinx",
-        "python-dotenv",
-        "furo",
-        "myst-parser",
-        "sphinx_rtd_theme",
-        "sphinx_book_theme",
-    ]
+    args = ["-aWTE", "docs", "docs/_dist"]
     sphinx_build = "sphinx-build"
 
     if "--live" in s.posargs:
-        deps.append("sphinx-autobuild")
         sphinx_build = "sphinx-autobuild"
         s.posargs.remove("--live")
 
     if s.posargs:
         args = s.posargs + args
 
-    install_with_requirements(s, "docs", ".", *deps)
+    install_with_group(s, "docs")
     s.run(sphinx_build, *args)
+
+
+@session
+def check_links(s: Session) -> None:
+    """Check links in docs."""
+    args = ["-b", "linkcheck", "docs", "docs/_dist/_links"]
+
+    if s.posargs:
+        args = s.posargs + args
+
+    install_with_group(s, "docs")
+    s.run("sphinx-build", *args)
 
 
 @session
 def fmt(s: Session) -> None:
     """Format the code with black and ruff."""
-    deps = ["black", "ruff"]
-    install_with_requirements(s, "lint", ".", *deps)
+    install_with_group(s, "lint")
     s.run("ruff", "check", ".", "--select", "I", "--fix")
     s.run("black", ".")
 
@@ -68,7 +71,7 @@ def fmt(s: Session) -> None:
 @session
 def lint(s: Session) -> None:
     """Lint the code with ruff."""
-    install_with_requirements(s, "lint", ".", "ruff")
+    install_with_group(s, "lint")
     s.run("ruff", "check", ".")
 
 
@@ -76,16 +79,14 @@ def lint(s: Session) -> None:
 def tests(s: Session) -> None:
     """Run unit tests."""
     args = s.posargs or ["--cov"]
-    deps = ["pytest", "pytest-cov", "beautifulsoup4"]
-    install_with_requirements(s, "dev", ".", *deps)
+    install_with_group(s, "dev")
     s.run("pytest", *args)
 
 
 @session(python=["3.8", "3.11"])
 def typecheck(s: Session) -> None:
     """Typecheck."""
-    deps = ["mypy", "pytest", "nox", "bs4", "types-beautifulsoup4"]
-    install_with_requirements(s, "dev", ".", *deps)
+    install_with_group(s, "dev")
     s.run("mypy", ".", "--exclude", "docs")
 
 
@@ -118,4 +119,4 @@ def publish(s: Session) -> None:
 @session(python=False)
 def clean(s: Session) -> None:
     """Delete artifacts."""
-    s.run("rm", "-rv", "dist", "docs/public")
+    s.run("rm", "-rv", "dist", "docs/_dist")
