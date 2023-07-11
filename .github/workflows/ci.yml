@@ -62,9 +62,5 @@ jobs:
       - name: Lint Python code
         run: nox -s lint
 
-      - name: Linkcheck
-        run: nox -s linkcheck
-        env:
-          DOCSEARCH_APP_ID: test
-          DOCSEARCH_API_KEY: test
-          DOCSEARCH_INDEX_NAME: test
+      - name: Check links
+        run: nox -s check_links
