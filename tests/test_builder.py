@@ -16,6 +16,7 @@ def test_no_builtin_search(app: Sphinx) -> None:
     assert not os.path.exists(Path(app.outdir) / "search.html")
     assert not os.path.exists(Path(app.outdir) / "searchindex.js")
 
+
 @pytest.mark.sphinx("xml", confoverrides={"extensions": ["sphinx_docsearch"]})
 def test_xml_docs(app: Sphinx) -> None:
     """It builds docs other than HTML."""
