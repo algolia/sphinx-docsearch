@@ -84,25 +84,25 @@ def update_global_context(app: Sphinx, doctree: Node, docname: str) -> None:
 
 def setup(app: Sphinx) -> Dict[str, Any]:
     """Register this extension with Sphinx."""
-    app.add_config_value("docsearch_app_id", default="", rebuild="html", types=(str))
-    app.add_config_value("docsearch_api_key", default="", rebuild="html", types=(str))
+    app.add_config_value("docsearch_app_id", default="", rebuild="html", types=[str])
+    app.add_config_value("docsearch_api_key", default="", rebuild="html", types=[str])
     app.add_config_value(
-        "docsearch_index_name", default="", rebuild="html", types=(str)
+        "docsearch_index_name", default="", rebuild="html", types=[str]
     )
     app.add_config_value(
-        "docsearch_container", default="#docsearch", rebuild="html", types=(str)
+        "docsearch_container", default="#docsearch", rebuild="html", types=[str]
     )
     app.add_config_value(
-        "docsearch_initial_query", default="", rebuild="html", types=(str)
+        "docsearch_initial_query", default="", rebuild="html", types=[str]
     )
     app.add_config_value(
-        "docsearch_placeholder", default="", rebuild="html", types=(str)
+        "docsearch_placeholder", default="", rebuild="html", types=[str]
     )
     app.add_config_value(
-        "docsearch_search_parameter", default="", rebuild="html", types=(str)
+        "docsearch_search_parameter", default="", rebuild="html", types=[str]
     )
     app.add_config_value(
-        "docsearch_missing_results_url", default="", rebuild="html", types=(str)
+        "docsearch_missing_results_url", default="", rebuild="html", types=[str]
     )
 
     app.connect("config-inited", check_config)
