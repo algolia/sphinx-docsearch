@@ -1,6 +1,7 @@
 # Contribution guide
 
-This project is open source. All contributions are welcome.
+This project is open source.
+All contributions are welcome.
 
 ## Set up development environment (fast)
 
@@ -46,6 +47,17 @@ where all applications are as isolated as possible.
    pipx install nox
    ```
 
-- `nox -ls`: list all sessions
-- `nox -s <SESSION>`: run session with name _`<NAME>`_.
-- `nox -s docs -p 3.11 -- --live`: build the docs and start development web server.
+## Tools
+
+This project uses [Poetry](https://python-poetry.org/) to build Python packages and manage dependencies.
+
+This project uses [Nox](https://nox.thea.codes/en/stable/) to run tasks,
+such as linting, testing, and building the docs,
+in isolated virtual environments.
+This makes running these tasks more predictable.
+All asks are defined in the file `noxfile.py` as _sessions_.
+
+To get an overview over all defined sessions, run `nox -ls`.
+To run a specific session, run {samp}`nox -s {SESSION}`.
+
+To build the docs and start a development server, run `nox -s docs -p 3.11 -- --live`.

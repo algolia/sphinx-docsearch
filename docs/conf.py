@@ -24,9 +24,11 @@ docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
 # Add `-t alabaster` or `-t rtd` to the build arguments
 if tags.has("rtd"):  # noqa
     html_theme = "sphinx_rtd_theme"
-elif tags.has("alabaster")
+    html_theme_options = {
+        "style_external_links": True,
+    }
+elif tags.has("alabaster"):  # noqa
     html_theme = "alabaster"
 else:
     # Use Furo by default
     html_theme = "furo"
-
