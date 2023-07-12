@@ -22,7 +22,7 @@ pip install sphinx-docsearch
 1. Add `sphinx-docsearch` to your Sphinx configuration file `conf.py`:
 
    ```python
-   extensions += ["sphinx_docsearch]
+   extensions += ["sphinx_docsearch"]
    ```
 
 1. Add your Algolia credentials to your Sphinx configuration:
