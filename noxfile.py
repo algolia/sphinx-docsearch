@@ -132,7 +132,7 @@ def publish(s: Session) -> None:
     with the token for publishing the package to PyPI.
     """
     build(s)
-    s.run("poetry", "publish", "--dry-run", external=True)
+    s.run("poetry", "publish", external=True)
 
 
 @session(python=False)

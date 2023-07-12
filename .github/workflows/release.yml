@@ -30,6 +30,8 @@ jobs:
           nox -s build
 
       - name: Publish package
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
         run: |
           nox -s publish
 
