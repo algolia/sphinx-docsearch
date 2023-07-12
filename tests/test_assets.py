@@ -28,7 +28,10 @@ def test_docsearch_assets(app: Sphinx) -> None:
     assert "_static/docsearch.js" in scripts
     assert "_static/docsearch_config.js" in scripts
 
-@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"], "html_theme": "furo"})
+
+@pytest.mark.sphinx(
+    "html", confoverrides={"extensions": ["sphinx_docsearch"], "html_theme": "furo"}
+)
 def test_custom_furo_assets(app: Sphinx) -> None:
     """It adds the custom CSS for the furo theme."""
     app.build()
@@ -40,7 +43,13 @@ def test_custom_furo_assets(app: Sphinx) -> None:
     assert "_static/furo-docsearch-custom.css" in css
 
 
-@pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"], "html_theme": "sphinx_rtd_theme"})
+@pytest.mark.sphinx(
+    "html",
+    confoverrides={
+        "extensions": ["sphinx_docsearch"],
+        "html_theme": "sphinx_rtd_theme",
+    },
+)
 def test_custom_rtd_assets(app: Sphinx) -> None:
     """It adds the custom CSS for the read the docs theme."""
     app.build()
