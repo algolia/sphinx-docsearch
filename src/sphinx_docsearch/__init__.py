@@ -57,6 +57,14 @@ def add_docsearch_assets(app: Sphinx, config: Config) -> None:
     config.html_static_path.append(str(static_path))
     config.templates_path.append(str(templates_path))
 
+    # Provide custom CSS to support different themes
+    if config.html_theme == "furo":
+        app.add_css_file("furo-docsearch-custom.css")
+    elif config.html_theme == "sphinx_rtd_theme":
+        app.add_css_file("rtd-docsearch-custom.css")
+    elif config.html_theme == "alabaster":
+        app.add_css_file("alabaster-docsearch-custom.css")
+
 
 @progress_message("DocSearch: update global context")
 def update_global_context(app: Sphinx, doctree: Node, docname: str) -> None:

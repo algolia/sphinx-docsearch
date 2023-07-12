@@ -79,7 +79,7 @@ def lint(s: Session) -> None:
 def tests(s: Session) -> None:
     """Run unit tests."""
     args = s.posargs or ["--cov"]
-    install_with_group(s, "dev")
+    install_with_group(s, "dev,docs")
     s.run("pytest", *args)
 
 

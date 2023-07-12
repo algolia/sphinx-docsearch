@@ -18,14 +18,8 @@ docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
 docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
 docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
 
-# DocSearch custom CSS examples for multiple Sphinx themes
-multi_theme = {"furo": "furo-docsearch-custom.css"}
+if tags.has("furo"):  # noqa
+    html_theme = "furo"
 
-html_static_path = ["static"]
-
-for theme in multi_theme:
-    if tags.has(theme):  # noqa
-        html_theme = theme
-        html_css_files = [multi_theme[theme]]
-else:
-    html_css_files = ["alabaster-docsearch-custom.css"]
+if tags.has("rtd"):  # noqa
+    html_theme = "sphinx_rtd_theme"
