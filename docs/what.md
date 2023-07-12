@@ -17,9 +17,19 @@ This Sphinx extension automatically adds it to your Sphinx project.
 - [Algolia Crawler docs](https://www.algolia.com/doc/tools/crawler/getting-started/overview/)
 :::
 
-## What does this extension do?
+## What does the DocSearch Sphinx extension do?
 
-- Add DocSearch UI to the HTML element with the ID specified by `docsearch_container` (default: `#docsearch`)
-- Override built-in template `searchbox.html` `sidebar/search.html` to fully replace the built-in search form.
-  Without that, you would get both the DocSearch results modal and Sphinx's built-in search form.
-- Disable Sphinx's built-in search (doesn't index the content)
+After applying to DocSearch, Algolia automatically crawls and indexes your docs.
+This Sphinx extension adds the DocSearch UI component to your website.
+It adds it to an HTML element, which you can select with the [`docsearch_container`](/configuration.md) setting (default: `#docsearch`).
+
+To avoid having two different search interfaces on your website,
+this extension replaces the default search box provided by Sphinx.
+It overrides the built-in templates `searchbox.html` or `sidebar/search.html`.
+This makes the extension work with the [Furo](https://pradyunsg.me/furo/),
+[Read The Docs Sphinx Theme](https://sphinx-rtd-theme.readthedocs.io/en/stable/), and
+[Alabaster](https://alabaster.readthedocs.io/en/latest/) themes by default.
+
+For these themes, the extension also adds custom CSS to make the DocSearch search box fit the theme.
+
+If you're using a different theme, see [Customize](/customization.md) for more information.

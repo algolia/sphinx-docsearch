@@ -1,13 +1,11 @@
-# Sphinx Algolia DocSearch extension
+# Algolia DocSearch Sphinx extension
 
 This extension for the [Sphinx](https://www.sphinx-doc.org/en/master/) documentation generator
-replaces Sphinx' built-in search with Algolia DocSearch.
+replaces Sphinx's built-in search with Algolia DocSearch.
 
 ## Before you begin
 
-[**Apply for DocSearch (free)**](https://docsearch.algolia.com/apply).
-
-You'll get an email with your Algolia credentials.
+[**Apply for DocSearch**](https://docsearch.algolia.com/apply). You'll get an email with your Algolia credentials.
 
 This extension supports Python versions 3.8, 3.9, 3.10, and 3.11 and Sphinx versions 5 and later.
 

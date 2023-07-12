@@ -11,4 +11,4 @@ Without customization, this extension makes the DocSearch input look good with t
 If you use other themes, or to further tweak the styles, you can add custom CSS.
 
 This extension supports themes that use a `searchbox.html` or `sidebar/search.html` template for rendering the search box.
-If you're using other themes, you can add custom templates and custom CSS.
+If you're using other themes, you can add [custom templates and custom CSS](/customization.md).

@@ -30,8 +30,8 @@ The Sphinx extension lets you configure these aspects of the DocSearch UI.
 
 - **`docsearch_container`** (default `#docsearch`)
 
-  The HTML element where the search input is added.
-  By default, the DocSearch input is added to the HTML element with the id `docsearch`.
+  The ID of the HTML element where the search input is added.
+  By default, the DocSearch input is added to the HTML element with the ID `docsearch`.
   You can change this setting if you're using a different theme.
 
 - **`docsearch_placeholder`** (default: `Search`):
