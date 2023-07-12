@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  release:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install pipx, nox, and poetry
+        run: |
+          pip install -U pip pipx
+          pipx install nox
+          pipx install poetry
+          nox --version
+          pip --version
+          pipx --version
+          poetry --version
+
+      - name: Build package
+        run: |
+          nox -s build
+
+      - name: Publish package
+        run: |
+          nox -s publish
+
+  tag-release:
+    name: Tag new release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
