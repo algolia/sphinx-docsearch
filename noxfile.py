@@ -101,6 +101,25 @@ def build(s: Session) -> None:
 
 
 @session(python=False)
+def export(s: Session) -> None:
+    """Export Poetry dependencies for ReadTheDocs.
+
+    Since Poetry is installed globally,
+    skip the virtual environment creation.
+    """
+    s.run(
+        "poetry",
+        "export",
+        "--with",
+        "docs",
+        "--without-hashes",
+        "--output",
+        "docs/requirements.txt",
+        external=True,
+    )
+
+
+@session(python=False)
 def publish(s: Session) -> None:
     """Publish this package to the Python package index (PyPI).
 
