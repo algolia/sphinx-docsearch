@@ -1,5 +1,4 @@
 :root {
-  --docsearch-primary-color: var(--color-brand-primary);
   --docsearch-searchbox-background: var(--color-sidebar-search-background);
   --docsearch-key-gradient: none;
 }
