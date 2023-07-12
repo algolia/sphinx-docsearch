@@ -21,9 +21,12 @@ docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
 docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
 
 # Support building the docs with different themes
-# Add `-t furo` or `-t rtd` to the build arguments
-if tags.has("furo"):  # noqa
-    html_theme = "furo"
-
+# Add `-t alabaster` or `-t rtd` to the build arguments
 if tags.has("rtd"):  # noqa
     html_theme = "sphinx_rtd_theme"
+elif tags.has("alabaster")
+    html_theme = "alabaster"
+else:
+    # Use Furo by default
+    html_theme = "furo"
+
