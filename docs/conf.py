@@ -10,6 +10,7 @@ load_dotenv()
 project = "Algolia DocSearch Sphinx extension"
 author = "Algolia"
 copyright = f"{author}."
+html_title = "Algolia DocSearch for Sphinx"
 
 # General configuration
 extensions = ["sphinx_docsearch", "myst_parser"]
