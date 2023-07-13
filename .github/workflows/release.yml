@@ -37,6 +37,7 @@ jobs:
 
   tag-release:
     name: Tag new release
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - uses: marvinpinto/action-automatic-releases@latest
