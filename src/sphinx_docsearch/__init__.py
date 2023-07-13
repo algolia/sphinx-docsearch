@@ -47,8 +47,12 @@ def check_config(app: Sphinx, config: Config) -> None:
 
 @progress_message("DocSearch: set up")
 def add_docsearch_assets(app: Sphinx, config: Config) -> None:
-    """Add the CSS and JS files for DocSearch."""
-    app.add_css_file("docsearch.css")
+    """Add the CSS and JS files for DocSearch.
+
+    Load the CSS with priority 800 to make sure it's loaded after default CSS.
+    This prevents global CSS (often used in Sphinx themes) from overriding DocSearch CSS.
+    """
+    app.add_css_file("docsearch.css", priority=800)
     app.add_js_file("docsearch.js", loading_method="defer")
     app.add_js_file("docsearch_config.js", loading_method="defer")
 
@@ -59,11 +63,11 @@ def add_docsearch_assets(app: Sphinx, config: Config) -> None:
 
     # Provide custom CSS to support different themes
     if config.html_theme == "furo":
-        app.add_css_file("furo-docsearch-custom.css")
+        app.add_css_file("furo-docsearch-custom.css", priority=810)
     elif config.html_theme == "sphinx_rtd_theme":
-        app.add_css_file("rtd-docsearch-custom.css")
+        app.add_css_file("rtd-docsearch-custom.css", priority=820)
     elif config.html_theme == "alabaster":
-        app.add_css_file("alabaster-docsearch-custom.css")
+        app.add_css_file("alabaster-docsearch-custom.css", priority=820)
 
 
 @progress_message("DocSearch: update global context")

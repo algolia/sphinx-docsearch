@@ -1,4 +1,4 @@
-# Algolia DocSearch Sphinx extension
+# Algolia DocSearch for Sphinx
 
 This extension for the [Sphinx](https://www.sphinx-doc.org/en/master/) documentation generator
 replaces Sphinx's built-in search with Algolia DocSearch.

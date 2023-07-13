@@ -29,7 +29,7 @@ black = "*"
 sphinx-autobuild = "^2021.3.14"
 python-dotenv = "^1.0.0"
 furo = "^2023.5.20"
-myst-parser = "^1.0.0"
+myst-parser = "^2.0.0"
 sphinx_rtd_theme = "^1.2.2"
 
 [tool.poetry.group.dev.dependencies]
