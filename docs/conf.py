@@ -14,7 +14,7 @@ html_title = "Algolia DocSearch for Sphinx"
 
 # General configuration
 extensions = ["sphinx_docsearch", "myst_parser"]
-myst_enable_extensions = ["colon_fence"]
+myst_enable_extensions = ["colon_fence", "deflist"]
 
 # DocSearch Sphinx extension
 docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
