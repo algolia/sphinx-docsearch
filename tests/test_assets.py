@@ -1,6 +1,7 @@
 """Test configuration checks."""
 
 import os
+import re
 from pathlib import Path
 
 import pytest
@@ -19,14 +20,16 @@ def test_docsearch_assets(app: Sphinx) -> None:
     test_file = read_as_html(Path(app.outdir) / "index.html")
 
     css = test_file.select("link[rel='stylesheet']")
-    css = [x["href"] for x in css]  # type: ignore[assignment]
-    assert "_static/docsearch.css" in css
-    assert "_static/alabaster-docsearch-custom.css" in css
+    css = [x["href"] for x in css]  # type: ignore
+    assert any(re.search(r"_static/docsearch.css", str(i)) for i in css)
+    assert any(
+        re.search(r"_static/alabaster-docsearch-custom.css", str(i)) for i in css
+    )
 
     scripts = test_file.select("script")
-    scripts = [x["src"] for x in scripts]  # type: ignore[assignment]
-    assert "_static/docsearch.js" in scripts
-    assert "_static/docsearch_config.js" in scripts
+    scripts = [x["src"] for x in scripts]  # type: ignore
+    assert any(re.search(r"_static/docsearch.js", str(i)) for i in scripts)
+    assert any(re.search(r"_static/docsearch_config.js", str(i)) for i in scripts)
 
 
 @pytest.mark.sphinx(
@@ -39,8 +42,8 @@ def test_custom_furo_assets(app: Sphinx) -> None:
     test_file = read_as_html(Path(app.outdir) / "index.html")
 
     css = test_file.select("link[rel='stylesheet']")
-    css = [x["href"] for x in css]  # type: ignore[assignment]
-    assert "_static/furo-docsearch-custom.css" in css
+    css = [x["href"] for x in css]  # type: ignore
+    assert any(re.search(r"_static/furo-docsearch-custom.css", str(i)) for i in css)
 
 
 @pytest.mark.sphinx(
@@ -57,5 +60,5 @@ def test_custom_rtd_assets(app: Sphinx) -> None:
     test_file = read_as_html(Path(app.outdir) / "index.html")
 
     css = test_file.select("link[rel='stylesheet']")
-    css = [x["href"] for x in css]  # type: ignore[assignment]
-    assert "_static/rtd-docsearch-custom.css" in css
+    css = [x["href"] for x in css]  # type: ignore
+    assert any(re.search("_static/rtd-docsearch-custom.css", str(i)) for i in css)

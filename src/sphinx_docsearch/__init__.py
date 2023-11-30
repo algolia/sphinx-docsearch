@@ -5,11 +5,12 @@ Replace Sphinx built-in search with Algolia DocSearch.
 :copyright: Kai Welke.
 :license: MIT, see LICENSE for details
 """
+from __future__ import annotations
+
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
-from docutils.nodes import Node
 from sphinx.application import Config, Sphinx
 from sphinx.builders.dirhtml import DirectoryHTMLBuilder
 from sphinx.builders.html import StandaloneHTMLBuilder
@@ -29,7 +30,7 @@ def check_config(app: Sphinx, config: Config) -> None:
     """Set up Algolia DocSearch.
 
     The parameters: `docsearch_app_id`, `docsearch_api_key`, and `docsearch_index_name` are required.
-    Log warnings, if any of these aren't included.
+    Log warnings if any of these aren't included.
     """
     if not config.docsearch_app_id:
         logger.warning(
@@ -69,32 +70,22 @@ def add_docsearch_assets(app: Sphinx, config: Config) -> None:
     elif config.html_theme == "alabaster":
         app.add_css_file("alabaster-docsearch-custom.css", priority=820)
 
-
-@progress_message("DocSearch: update global context")
-def update_global_context(app: Sphinx, doctree: Node, docname: str) -> None:
-    """Update global context with DocSearch configuration."""
-    if app.builder.format != "html":
-        return
-
-    app.builder.globalcontext["docsearch_app_id"] = app.config.docsearch_app_id
-    app.builder.globalcontext["docsearch_api_key"] = app.config.docsearch_api_key
-    app.builder.globalcontext["docsearch_index_name"] = app.config.docsearch_index_name
-    app.builder.globalcontext["docsearch_container"] = app.config.docsearch_container
-    app.builder.globalcontext[
-        "docsearch_initial_query"
-    ] = app.config.docsearch_initial_query
-    app.builder.globalcontext[
-        "docsearch_placeholder"
-    ] = app.config.docsearch_placeholder
-    app.builder.globalcontext[
-        "docsearch_search_parameter"
-    ] = app.config.docsearch_search_parameter
-    app.builder.globalcontext[
-        "docsearch_missing_results_url"
-    ] = app.config.docsearch_missing_results_url
+    # Update global context
+    config.html_context.update(
+        {
+            "docsearch_app_id": config.docsearch_app_id,
+            "docsearch_api_key": app.config.docsearch_api_key,
+            "docsearch_index_name": app.config.docsearch_index_name,
+            "docsearch_container": app.config.docsearch_container,
+            "docsearch_initial_query": app.config.docsearch_initial_query,
+            "docsearch_placeholder": app.config.docsearch_placeholder,
+            "docsearch_search_parameter": app.config.docsearch_search_parameter,
+            "docsearch_missing_results_url": app.config.docsearch_missing_results_url,
+        }
+    )
 
 
-def setup(app: Sphinx) -> Dict[str, Any]:
+def setup(app: Sphinx) -> dict[str, Any]:
     """Register this extension with Sphinx."""
     app.add_config_value("docsearch_app_id", default="", rebuild="html", types=[str])
     app.add_config_value("docsearch_api_key", default="", rebuild="html", types=[str])
@@ -119,7 +110,6 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.connect("config-inited", check_config)
     app.connect("config-inited", add_docsearch_assets)
-    app.connect("doctree-resolved", update_global_context)
 
     # Disable built-in search
     StandaloneHTMLBuilder.search = False

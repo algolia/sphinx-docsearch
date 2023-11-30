@@ -12,7 +12,7 @@ from nox import Session, options, session
 
 options.stop_on_first_error = True
 
-python_versions = ["3.11", "3.10", "3.9", "3.8"]
+python_versions = ["3.12", "3.11", "3.10", "3.9", "3.8"]
 
 
 def install_with_group(s: Session, group: str = "dev") -> None:
@@ -83,7 +83,7 @@ def tests(s: Session) -> None:
     s.run("pytest", *args)
 
 
-@session(python=["3.8", "3.11"])
+@session(python=["3.8", "3.12"])
 def typecheck(s: Session) -> None:
     """Typecheck."""
     install_with_group(s, "dev")
