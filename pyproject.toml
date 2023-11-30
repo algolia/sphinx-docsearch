@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sphinx-docsearch"
-version = "0.0.3"
+version = "0.0.4"
 description = "A Sphinx extension for replacing the built-in search with Algolia DocSearch"
 authors = ["Algolia"]
 license = "MIT"
