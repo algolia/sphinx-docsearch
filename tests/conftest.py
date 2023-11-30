@@ -15,7 +15,7 @@ collect_ignore = ["roots"]
 
 
 @pytest.fixture(scope="session")
-def rootdir() -> Any:
+def rootdir() -> Any:  # noqa: ANN401
     """Root directory for test files."""
     if version_info >= (7, 2):
         return Path(__file__).parent.absolute() / "roots"

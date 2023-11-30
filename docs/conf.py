@@ -19,7 +19,7 @@ myst_enable_extensions = ["colon_fence", "deflist"]
 # DocSearch Sphinx extension
 docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
 docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
-#docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
+# docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
 docsearch_index_name = "crawler_sphinx test"
 
 # Support building the docs with different themes
