@@ -8,7 +8,7 @@ replaces Sphinx's built-in search with Algolia DocSearch.
 [**Apply for DocSearch**](https://docsearch.algolia.com/apply).
 You'll get an email with your Algolia credentials.
 
-This extension supports Python versions 3.8, 3.9, 3.10, and 3.11 and Sphinx versions 5 and later.
+This extension supports Python versions 3.8 and later and Sphinx versions 5 and later.
 
 ## Install
 
