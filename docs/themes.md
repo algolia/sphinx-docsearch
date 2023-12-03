@@ -6,6 +6,7 @@ Without customization, this extension makes the DocSearch input look good with t
 
 - [Furo](https://pradyunsg.me/furo/)
 - [Read The Docs Sphinx Theme](https://sphinx-rtd-theme.readthedocs.io/en/stable/)
+- [Awesome Theme](https://sphinxawesome.xyz/)
 - [Alabaster](https://alabaster.readthedocs.io/en/latest/)
 
 If you use other themes, or to further tweak the styles, you can add custom CSS.

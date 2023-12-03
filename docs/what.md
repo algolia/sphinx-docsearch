@@ -15,7 +15,7 @@ This Sphinx extension automatically adds it to your Sphinx project.
 - [Who can apply?](https://docsearch.algolia.com/docs/who-can-apply/)
 - [Crawler GitHub Action](https://github.com/marketplace/actions/algolia-crawler-automatic-crawl)
 - [Algolia Crawler docs](https://www.algolia.com/doc/tools/crawler/getting-started/overview/)
-:::
+  :::
 
 ## What does the DocSearch Sphinx extension do?
 
@@ -27,7 +27,9 @@ To avoid having two different search interfaces on your website,
 this extension replaces the default search box provided by Sphinx.
 It overrides the built-in templates `searchbox.html` or `sidebar/search.html`.
 This makes the extension work with the [Furo](https://pradyunsg.me/furo/),
-[Read The Docs](https://sphinx-rtd-theme.readthedocs.io/en/stable/), and
+[Read The Docs](https://sphinx-rtd-theme.readthedocs.io/en/stable/),
+[Awesome](https://sphinxawesome.xyz/),
+and
 [Alabaster](https://alabaster.readthedocs.io/en/latest/) themes by default.
 
 For these themes, the extension also adds custom CSS to make the DocSearch search box fit the theme.

@@ -2,6 +2,7 @@
 import os
 
 from dotenv import load_dotenv
+from sphinxawesome_theme.postprocess import Icons
 
 # Load environment variables
 load_dotenv()
@@ -31,6 +32,10 @@ if tags.has("rtd"):  # noqa
     }
 elif tags.has("alabaster"):  # noqa
     html_theme = "alabaster"
-else:
-    # Use Furo by default
+elif tags.has("furo"):  # noqa
     html_theme = "furo"
+else:
+    html_theme = "sphinxawesome_theme"
+    html_permalinks_icon = Icons.permalinks_icon
+    html_theme_options = {"awesome_external_links": True}
+    extensions += ["sphinxawesome_theme.highlighting"]
