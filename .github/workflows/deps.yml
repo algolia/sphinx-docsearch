@@ -2,12 +2,24 @@ name: Install dependencies
 
 on:
   workflow_call:
+    inputs:
+      python-version:
+        required: false
+        type: string
+        default: 3.12
 
 jobs:
   install-dependencies:
     name: Install dependencies
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ python-version }}
+
       - name: Install pipx, nox, and poetry
         run: |
           pip install -U pip pipx
