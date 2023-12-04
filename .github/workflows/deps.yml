@@ -1,0 +1,20 @@
+name: Install dependencies
+
+on:
+  workflow_call:
+
+jobs:
+  install-dependencies:
+    name: Install dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install pipx, nox, and poetry
+        run: |
+          pip install -U pip pipx
+          pipx install nox
+          pipx install poetry
+          pipx inject poetry poetry-plugin-export
+          nox --version
+          pip --version
+          pipx --version
+          poetry --version

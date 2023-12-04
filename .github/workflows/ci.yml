@@ -26,14 +26,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install pipx, nox, and poetry
-        run: |
-          pip install -U pip pipx
-          pipx install nox
-          pipx install poetry
-          nox --version
-          pip --version
-          pipx --version
-          poetry --version
+        uses: ./.github/workflows/deps.yml
 
       - name: Run tests and build docs
         run: |
@@ -51,17 +44,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       - name: Install pipx, nox, and poetry
-        run: |
-          pip install -U pip pipx
-          pipx install nox
-          pipx install poetry
-          nox --version
-          pip --version
-          pipx --version
-          poetry --version
+        uses: ./.github/workflows/deps.yml
 
       - name: Lint Python code
         run: nox -s lint
@@ -80,17 +66,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       - name: Install pipx, nox, and poetry
-        run: |
-          pip install -U pip pipx
-          pipx install nox
-          pipx install poetry
-          nox --version
-          pip --version
-          pipx --version
-          poetry --version
+        uses: ./.github/workflows/deps.yml
 
       - name: Build package
         run: nox -s build
