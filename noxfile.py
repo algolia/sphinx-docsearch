@@ -21,7 +21,8 @@ def install_with_group(s: Session, group: str = "dev") -> None:
         s.run(
             "poetry",
             "export",
-            "--only",
+            "--without-hashes",
+            "--with",
             group,
             "--output",
             requirements.name,
