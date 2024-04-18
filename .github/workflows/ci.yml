@@ -18,21 +18,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install pipx, nox, and poetry
+      - name: Install nox and poetry
         run: |
-          pip install -U pip pipx
-          pipx install nox
-          pipx install poetry
+          pip install -U pip nox poetry poetry-plugin-export
           nox --version
           pip --version
-          pipx --version
           poetry --version
 
       - name: Run tests and build docs
@@ -48,19 +45,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.12
 
-      - name: Install pipx, nox, and poetry
+      - name: Install nox and poetry
         run: |
-          pip install -U pip pipx
-          pipx install nox
-          pipx install poetry
+          pip install -U pip nox poetry poetry-plugin-export
           nox --version
           pip --version
-          pipx --version
           poetry --version
 
       - name: Lint Python code
@@ -77,19 +71,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.12
 
-      - name: Install pipx, nox, and poetry
+      - name: Install nox and poetry
         run: |
-          pip install -U pip pipx
-          pipx install nox
-          pipx install poetry
+          pip install -U pip nox poetry poetry-plugin-export
           nox --version
           pip --version
-          pipx --version
           poetry --version
 
       - name: Build package
