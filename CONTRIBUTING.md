@@ -6,14 +6,14 @@ All contributions are welcome.
 ## Set up development environment (fast)
 
 If you just want to edit the docs, or make a few small changes to the code,
-and you have Python 3.8, 3.9, 3.10, or 3.11 installed,
+and you have Python 3.8, 3.9, 3.10, 3.11, or 3.12 installed,
 run these commands to install the dependencies:
 
 ```sh
 pip install -U nox poetry
 
 # Run nox session, e.g., to build the docs
-nox -s docs -p 3.11
+nox -s docs -p 3.12
 ```
 
 Replace the Python version with the one that's installed on your system.
@@ -24,12 +24,12 @@ It's best if you set up a reproducible development environment,
 where all applications are as isolated as possible.
 
 1. To run specific versions of Python, install a Python version manager,
-   such as `pyenv` or `rtx`.
+   such as `pyenv` or `mise`.
 
-1. Install the latest supported Python version, 3.11, for example, with `rtx`:
+1. Install the latest supported Python version, 3.11, for example, with `mise`:
 
    ```sh
-   rtx install python@3.11
+   mise install python@3.12
    ```
 
 1. Specify a Python version, either locally or globally.
@@ -60,4 +60,4 @@ All asks are defined in the file `noxfile.py` as _sessions_.
 To get an overview over all defined sessions, run `nox -ls`.
 To run a specific session, run {samp}`nox -s {SESSION}`.
 
-To build the docs and start a development server, run `nox -s docs -p 3.11 -- --live`.
+To build the docs and start a development server, run `nox -s docs -p 3.12 -- --live`.
