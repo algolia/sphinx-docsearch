@@ -4,7 +4,7 @@ Requires [Nox](https://nox.thea.codes/).
 
 - Run `nox -ls` to list all sessions.
 - Run `nox -s <NAME>` to run the session _`<NAME>`_.
-- Run `nox -s docs -p 3.11 -- --live` to build the docs with live-reloading.
+- Run `nox -s docs -p 3.12 -- --live` to build the docs with live-reloading.
 """
 
 import tempfile
@@ -53,7 +53,7 @@ def docs(s: Session) -> None:
 @session
 def check_links(s: Session) -> None:
     """Check links in docs."""
-    args = ["-b", "linkcheck", "docs", "docs/_dist/_links"]
+    args = ["-b", "linkcheck", "docs", "docs/_dist/_links", "-t", "furo"]
 
     if s.posargs:
         args = s.posargs + args
