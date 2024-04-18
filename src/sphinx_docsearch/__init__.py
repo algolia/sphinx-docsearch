@@ -5,6 +5,7 @@ Replace Sphinx built-in search with Algolia DocSearch.
 :copyright: Kai Welke.
 :license: MIT, see LICENSE for details
 """
+
 from __future__ import annotations
 
 from importlib.metadata import PackageNotFoundError, version

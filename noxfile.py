@@ -6,6 +6,7 @@ Requires [Nox](https://nox.thea.codes/).
 - Run `nox -s <NAME>` to run the session _`<NAME>`_.
 - Run `nox -s docs -p 3.11 -- --live` to build the docs with live-reloading.
 """
+
 import tempfile
 
 from nox import Session, options, session
@@ -66,7 +67,7 @@ def fmt(s: Session) -> None:
     """Format the code with black and ruff."""
     install_with_group(s, "lint")
     s.run("ruff", "check", ".", "--select", "I", "--fix")
-    s.run("black", ".")
+    s.run("ruff", "format", ".")
 
 
 @session

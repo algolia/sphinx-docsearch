@@ -4,6 +4,7 @@ This extension bundles the JavaScript and CSS for DocSearch.
 This module downloads the latest version of these assets from
 the jsDelivr CDN.
 """
+
 import re
 from pathlib import Path
 
