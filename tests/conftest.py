@@ -1,4 +1,5 @@
 """Configuration for Pytest."""
+
 from typing import Any
 
 import pytest

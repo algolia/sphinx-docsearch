@@ -1,8 +1,8 @@
 """Sphinx configuration."""
+
 import os
 
 from dotenv import load_dotenv
-from sphinxawesome_theme.postprocess import Icons
 
 # Load environment variables
 load_dotenv()
@@ -35,6 +35,8 @@ elif tags.has("alabaster"):  # noqa
 elif tags.has("furo"):  # noqa
     html_theme = "furo"
 else:
+    from sphinxawesome_theme.postprocess import Icons
+
     html_theme = "sphinxawesome_theme"
     html_permalinks_icon = Icons.permalinks_icon
     html_theme_options = {"awesome_external_links": True}

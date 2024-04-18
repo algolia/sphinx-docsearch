@@ -4,8 +4,9 @@ Requires [Nox](https://nox.thea.codes/).
 
 - Run `nox -ls` to list all sessions.
 - Run `nox -s <NAME>` to run the session _`<NAME>`_.
-- Run `nox -s docs -p 3.11 -- --live` to build the docs with live-reloading.
+- Run `nox -s docs -p 3.12 -- --live` to build the docs with live-reloading.
 """
+
 import tempfile
 
 from nox import Session, options, session
@@ -35,7 +36,7 @@ def install_with_group(s: Session, group: str = "dev") -> None:
 @session(python=python_versions)
 def docs(s: Session) -> None:
     """Build the docs."""
-    args = ["-aWTE", "docs", "docs/_dist"]
+    args = ["-aWTE", "docs", "docs/_dist", "-t", "furo"]
     sphinx_build = "sphinx-build"
 
     if "--live" in s.posargs:
@@ -52,7 +53,7 @@ def docs(s: Session) -> None:
 @session
 def check_links(s: Session) -> None:
     """Check links in docs."""
-    args = ["-b", "linkcheck", "docs", "docs/_dist/_links"]
+    args = ["-b", "linkcheck", "docs", "docs/_dist/_links", "-t", "furo"]
 
     if s.posargs:
         args = s.posargs + args
@@ -66,7 +67,7 @@ def fmt(s: Session) -> None:
     """Format the code with black and ruff."""
     install_with_group(s, "lint")
     s.run("ruff", "check", ".", "--select", "I", "--fix")
-    s.run("black", ".")
+    s.run("ruff", "format", ".")
 
 
 @session

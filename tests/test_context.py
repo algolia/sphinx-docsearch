@@ -1,4 +1,5 @@
 """Test global context."""
+
 import re
 
 import pytest
