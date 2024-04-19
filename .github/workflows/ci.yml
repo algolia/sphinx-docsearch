@@ -32,13 +32,24 @@ jobs:
           pip --version
           poetry --version
 
-      - name: Run tests and build docs
+      - name: Run tests
         run: |
           nox -p ${{ matrix.python-version }}
         env:
           DOCSEARCH_APP_ID: test
           DOCSEARCH_API_KEY: test
           DOCSEARCH_INDEX_NAME: test
+
+  docs:
+    name: Docs PR preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: readthedocs/actions/preview@v1
+        with:
+          project-slug: sphinx-docsearch
+          single-version: true
+          message-template: |
+            **Preview**: {docs-pr-index-url}
   lint:
     name: Lint
 
