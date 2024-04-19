@@ -2,7 +2,7 @@
 name = "sphinx-docsearch"
 version = "0.0.5"
 description = "A Sphinx extension for replacing the built-in search with Algolia DocSearch"
-authors = ["Algolia"]
+authors = ["Algolia <support@algolia.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [
@@ -36,7 +36,7 @@ python-dotenv = "^1.0.0"
 furo = "^2024.1.29"
 myst-parser = "^2.0.0"
 sphinx_rtd_theme = "^2.0.0"
-# sphinxawesome-theme = "^5.1"
+sphinxawesome-theme = "^5.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8"
