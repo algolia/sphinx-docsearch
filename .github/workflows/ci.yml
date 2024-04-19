@@ -47,7 +47,8 @@ jobs:
       - uses: readthedocs/actions/preview@v1
         with:
           project-slug: sphinx-docsearch
-
+          message-template: |
+            **Preview**: {doscs-pr-index-url}
   lint:
     name: Lint
 
