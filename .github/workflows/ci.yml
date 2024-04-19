@@ -39,6 +39,8 @@ jobs:
           DOCSEARCH_APP_ID: test
           DOCSEARCH_API_KEY: test
           DOCSEARCH_INDEX_NAME: test
+
+      - uses: readthedocs/actions/preview@v1
   lint:
     name: Lint
 
