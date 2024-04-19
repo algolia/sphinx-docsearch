@@ -48,7 +48,7 @@ jobs:
         with:
           project-slug: sphinx-docsearch
           message-template: |
-            **Preview**: {doscs-pr-index-url}
+            **Preview**: {docs-pr-index-url}
   lint:
     name: Lint
 
