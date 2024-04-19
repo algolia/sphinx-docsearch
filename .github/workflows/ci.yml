@@ -32,7 +32,7 @@ jobs:
           pip --version
           poetry --version
 
-      - name: Run tests and build docs
+      - name: Run tests
         run: |
           nox -p ${{ matrix.python-version }}
         env:
@@ -40,7 +40,12 @@ jobs:
           DOCSEARCH_API_KEY: test
           DOCSEARCH_INDEX_NAME: test
 
+  docs:
+    name: Docs PR preview
+    runs-on: ubuntu-latest
+    steps:
       - uses: readthedocs/actions/preview@v1
+
   lint:
     name: Lint
 
