@@ -17,7 +17,12 @@ from sphinx.builders.dirhtml import DirectoryHTMLBuilder
 from sphinx.builders.html import StandaloneHTMLBuilder
 from sphinx.locale import __
 from sphinx.util import logging
-from sphinx.util.display import progress_message
+
+try:
+    from sphinx.util.display import progress_message
+except ImportError:
+    # Sphinx < 7.0
+    from sphinx.util import progress_message
 
 logger = logging.getLogger(__name__)
 
