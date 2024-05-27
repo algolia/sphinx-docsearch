@@ -1,4 +1,4 @@
-name: Update DocSearch assets
+name: Assets
 
 on:
   schedule:
@@ -7,6 +7,7 @@ on:
 
 jobs:
   update:
+    name: Update DocSearch assets
     runs-on: ubuntu-latest
 
     steps:
