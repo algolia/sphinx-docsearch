@@ -1,0 +1,46 @@
+name: Update DocSearch assets
+
+on:
+  schedule:
+    - cron: "37 3 * * 0"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install poetry
+        run: |
+          pip install -U pip poetry
+          poetry --version
+          poetry install
+
+      - name: Update assets
+        run: poetry run python update_assets.py
+
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/update-docsearch-assets
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            git config --global user.name "algolia-ci"
+            git config --global user.email "noreply@algolia.com"
+            git checkout -b "${branch}"
+            git add .
+            git commit --message "chore: update DocSearch assets"
+            git push --force --set-upstream origin "${branch}"
+            if ! [[ "$(gh pr list --base main --head ${branch})" ]]; then
+              gh pr create --title "Update DocSearch assets" --body "Update DocSearch assets"
+            fi
+          else
+            echo "DocSearch assets up to date." >> $GITHUB_ENV
+          fi
