@@ -71,10 +71,13 @@ def add_docsearch_assets(app: Sphinx, config: Config) -> None:
     # Provide custom CSS to support different themes
     if config.html_theme == "furo":
         app.add_css_file("furo-docsearch-custom.css", priority=810)
-    elif config.html_theme == "sphinx_rtd_theme":
+    if config.html_theme == "sphinx_rtd_theme":
         app.add_css_file("rtd-docsearch-custom.css", priority=820)
-    elif config.html_theme == "alabaster":
+    if config.html_theme == "alabaster":
         app.add_css_file("alabaster-docsearch-custom.css", priority=820)
+    if config.html_theme == "pydata_sphinx_theme":
+        app.add_css_file("pydata-docsearch-custom.css", priority=820)
+        config.html_theme_options["navbar_persistent"] = "searchbox.html"
 
     # Update global context
     config.html_context.update(
