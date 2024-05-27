@@ -64,7 +64,7 @@ def check_links(s: Session) -> None:
 
 @session
 def fmt(s: Session) -> None:
-    """Format the code with black and ruff."""
+    """Format the code with ruff."""
     install_with_group(s, "lint")
     s.run("ruff", "check", ".", "--select", "I", "--fix")
     s.run("ruff", "format", ".")
