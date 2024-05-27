@@ -37,6 +37,9 @@ furo = "^2024.1.29"
 myst-parser = "^2.0.0"
 sphinx_rtd_theme = "^2.0.0"
 sphinxawesome-theme = "^5.1"
+pydata-sphinx-theme = [
+ { version = "^0.15.2", python = ">=3.9"}
+]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8"

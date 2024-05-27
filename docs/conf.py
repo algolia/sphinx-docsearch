@@ -34,10 +34,19 @@ elif tags.has("alabaster"):  # noqa
     html_theme = "alabaster"
 elif tags.has("furo"):  # noqa
     html_theme = "furo"
+# elif tags.has("pydata"):  # noqa
 else:
-    from sphinxawesome_theme.postprocess import Icons
-
-    html_theme = "sphinxawesome_theme"
-    html_permalinks_icon = Icons.permalinks_icon
-    html_theme_options = {"awesome_external_links": True}
-    extensions += ["sphinxawesome_theme.highlighting"]
+    templates_path = ["_templates"]
+    html_theme = "pydata_sphinx_theme"
+    html_theme_options = {
+        "navbar_persistent": "searchbox.html",
+    }
+    html_static_path = ["_static"]
+    html_css_files = ["pydata-docsearch-custom.css"]
+# else:
+#     from sphinxawesome_theme.postprocess import Icons
+#
+#     html_theme = "sphinxawesome_theme"
+#     html_permalinks_icon = Icons.permalinks_icon
+#     html_theme_options = {"awesome_external_links": True}
+#     extensions += ["sphinxawesome_theme.highlighting"]
