@@ -42,5 +42,5 @@ jobs:
               gh pr create --title "Update DocSearch assets" --body "Update DocSearch assets"
             fi
           else
-            echo "DocSearch assets up to date." >> $GITHUB_ENV
+            echo "DocSearch assets up to date."
           fi
