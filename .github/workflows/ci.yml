@@ -84,9 +84,6 @@ jobs:
           pip --version
           poetry --version
 
-      - name: Build package
-        run: nox -s build
-
       - name: Publish package
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
