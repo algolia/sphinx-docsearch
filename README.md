@@ -10,6 +10,8 @@ You'll get an email with your Algolia credentials.
 
 This extension supports Python versions 3.8 and later and Sphinx versions 5 and later.
 
+For a list of supported themes, see [HTML theme support](https://sphinx-docsearch.readthedocs.io/themes.html)
+
 ## Install
 
 Install the `sphinx-docsearch` package:
@@ -36,14 +38,17 @@ pip install sphinx-docsearch
    docsearch_index_name = "<DOCSEARCH_INDEX_NAME>"
    ```
 
-   See also: [Configure DocSearch](https://sphinx-docsearch.readthedocs.io/configuration.html).
+   See also:
+
+   - [Manage credentials](https://sphinx-docsearch.readthedocs.io/credentials.html)
+   - [Configure DocSearch](https://sphinx-docsearch.readthedocs.io/configuration.html)
 
 ## Customize
 
-To change what the crawler should extract from your pages, see [Record Extractor](https://docsearch.algolia.com/docs/record-extractor).
+To change what the crawler should extract from your pages,
+see [Record Extractor](https://docsearch.algolia.com/docs/record-extractor).
 
-You can add [custom templates](https://sphinx-docsearch.readthedocs.io/customization.html#add-custom-templates),
-if your Sphinx HTML theme uses templates [not provided](https://sphinx-docsearch.readthedocs.io/themes.html)
-by this extension.
-
-You can customize the look of the DocSearch UI by [adding your own CSS](https://sphinx-docsearch.readthedocs.io/customization.html#add-custom-css).
+If you're using a Sphinx theme that's not supported,
+you can add custom templates to add the DocSearch UI.
+You can further customize the look of the DocSearch UI by adding custom CSS.
+For more information, see [Customize](https://sphinx-docsearch.readthedocs.io/customization.html).

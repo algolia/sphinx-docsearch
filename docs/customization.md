@@ -16,12 +16,11 @@ If you're using any of the [listed themes](/themes.md), DocSearch works without 
 
 If you're using any other theme, you can add custom templates in your Sphinx configuration.
 The extension works best, if the theme uses a separate template for the search box.
-Otherwise, you might need to copy a lot of unrelated template code into your custom templates.
 
 To add a custom template, follow these steps:
 
-1. Create a new directory in your Sphinx project—for example `_templates/`.
-1. Create a custom template file with the same name as the template you want to override from your theme—for example, `_templates/searchbox.html`:
+1. Create a new directory in your Sphinx project, such as `_templates/`.
+1. Create a custom template file with the same name as the template you want to override from your theme, such as `_templates/searchbox.html`:
 
    ```html+jinja
    {# _templates/searchbox.html #}
@@ -42,16 +41,16 @@ To add a custom template, follow these steps:
 
 To modify the style of the DocSearch search box and modal dialog, you can add custom CSS files to your project:
 
-1. Create a new directory in your Sphinx project—for example, `_static/`.
+1. Create a new directory in your Sphinx project, such as `_static/`.
 1. Create a new CSS file with styles you want to change:
 
    ```css
    /* _static/custom.css */
    :root {
-    --docsearch-primary-color: #d83fe0;
+     --docsearch-primary-color: #d83fe0;
    }
    .DocSearch-Button {
-    border-radius: 0; 
+     border-radius: 0; 
    }
    ```
 

@@ -12,7 +12,7 @@ run these commands to install the dependencies:
 ```sh
 pip install -U nox poetry
 
-# Run nox session, e.g., to build the docs
+# Run nox session, for example, to build the docs
 nox -s docs -p 3.12
 ```
 
@@ -26,7 +26,7 @@ where all applications are as isolated as possible.
 1. To run specific versions of Python, install a Python version manager,
    such as `pyenv` or `mise`.
 
-1. Install the latest supported Python version, 3.11, for example, with `mise`:
+1. Install a specific Python version, for example, with `mise`:
 
    ```sh
    mise install python@3.12

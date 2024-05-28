@@ -20,8 +20,7 @@ myst_enable_extensions = ["colon_fence", "deflist"]
 # DocSearch Sphinx extension
 docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
 docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
-# docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
-docsearch_index_name = "crawler_sphinx test"
+docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
 
 # Support building the docs with different themes
 # Add `-t alabaster` or `-t rtd` to the build arguments
@@ -34,6 +33,8 @@ elif tags.has("alabaster"):  # noqa
     html_theme = "alabaster"
 elif tags.has("furo"):  # noqa
     html_theme = "furo"
+elif tags.has("pydata"):  # noqa
+    html_theme = "pydata_sphinx_theme"
 else:
     from sphinxawesome_theme.postprocess import Icons
 

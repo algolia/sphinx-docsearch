@@ -42,7 +42,8 @@ The Sphinx extension lets you configure these aspects of the DocSearch UI.
 **`docsearch_missing_results_url`**
 : If specified, DocSearch adds a message to the "No results found" screen with the link to the URL you specified,
   for users to report issues with missing search results.
-  You can include the current search query as parameter ${query}. For example:
+  You can include the current search query as parameter `${query}`.
+  For example, create a new GitHub issue for the missing search result:
 
   ```python
   docsearch_missing_results_url = "https://github.com/example/docs/issues/new?title=${query}"

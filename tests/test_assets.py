@@ -2,6 +2,7 @@
 
 import os
 import re
+import sys
 from pathlib import Path
 
 import pytest
@@ -62,3 +63,22 @@ def test_custom_rtd_assets(app: Sphinx) -> None:
     css = test_file.select("link[rel='stylesheet']")
     css = [x["href"] for x in css]  # type: ignore
     assert any(re.search("_static/rtd-docsearch-custom.css", str(i)) for i in css)
+
+
+@pytest.mark.skipif(sys.version_info < (3,9), reason="requires at least Python 3.9")
+@pytest.mark.sphinx(
+    "html",
+    confoverrides={
+        "extensions": ["sphinx_docsearch"],
+        "html_theme": "pydata_sphinx_theme",
+    },
+)
+def test_custom_pydata_assets(app: Sphinx) -> None:
+    """It adds the custom CSS for the read the docs theme."""
+    app.build()
+    assert os.path.exists(Path(app.outdir) / "_static" / "pydata-docsearch-custom.css")
+    test_file = read_as_html(Path(app.outdir) / "index.html")
+
+    css = test_file.select("link[rel='stylesheet']")
+    css = [x["href"] for x in css]  # type: ignore
+    assert any(re.search("_static/pydata-docsearch-custom.css", str(i)) for i in css)
