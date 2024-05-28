@@ -33,13 +33,12 @@ elif tags.has("alabaster"):  # noqa
     html_theme = "alabaster"
 elif tags.has("furo"):  # noqa
     html_theme = "furo"
-# elif tags.has("pydata"):  # noqa
-else:
+elif tags.has("pydata"):  # noqa
     html_theme = "pydata_sphinx_theme"
-# else:
-#     from sphinxawesome_theme.postprocess import Icons
-#
-#     html_theme = "sphinxawesome_theme"
-#     html_permalinks_icon = Icons.permalinks_icon
-#     html_theme_options = {"awesome_external_links": True}
-#     extensions += ["sphinxawesome_theme.highlighting"]
+else:
+    from sphinxawesome_theme.postprocess import Icons
+
+    html_theme = "sphinxawesome_theme"
+    html_permalinks_icon = Icons.permalinks_icon
+    html_theme_options = {"awesome_external_links": True}
+    extensions += ["sphinxawesome_theme.highlighting"]
