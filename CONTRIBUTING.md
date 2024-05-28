@@ -12,7 +12,7 @@ run these commands to install the dependencies:
 ```sh
 pip install -U nox poetry
 
-# Run nox session, e.g., to build the docs
+# Run nox session, for example, to build the docs
 nox -s docs -p 3.12
 ```
 

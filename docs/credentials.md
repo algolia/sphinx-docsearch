@@ -20,7 +20,7 @@ You can use the [`python-dotenv`](https://github.com/theskumar/python-dotenv) pa
 
    Replace the placeholder values `<...>` with your Algolia credentials.
 
-1. If you're using git version control for your documentation, add this file to the `.gitignore` file:
+1. If you're using git, add this file to the `.gitignore` file:
 
    ```sh
    echo ".env" >> .gitignore
@@ -31,7 +31,10 @@ You can use the [`python-dotenv`](https://github.com/theskumar/python-dotenv) pa
    it's still best practice to not commit any credentials to your repository.
    :::
 
-## Load environment variables from a `.env` file
+## Load environment variables
+
+To load environment variables from a `.env` file in your Sphinx configuration,
+follow these steps:
 
 1. Add the `python-dotenv` package to the list of your dependencies,
    or install it directly:
@@ -48,7 +51,7 @@ You can use the [`python-dotenv`](https://github.com/theskumar/python-dotenv) pa
    from dotenv import load_dotenv
 
    load_dotenv()
-   # ... 
+   # ...
    ```
 
    This adds the environment variables from your `.env` file to the shell environment,

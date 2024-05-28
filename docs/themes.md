@@ -3,7 +3,7 @@
 The Algolia DocSearch Sphinx extension works best for HTML themes that use dedicated templates to render the search box on every page
 (`searchbox.html` or `sidebar/search.html`).
 
-Without customization, this extension makes the DocSearch input look good with these HTML themes:
+Out of the box, this extension supports themes HTML themes for Sphinx:
 
 - [Furo](https://pradyunsg.me/furo/)
 - [Read The Docs Sphinx Theme](https://sphinx-rtd-theme.readthedocs.io/en/stable/)
@@ -11,4 +11,4 @@ Without customization, this extension makes the DocSearch input look good with t
 - [Alabaster](https://alabaster.readthedocs.io/en/latest/)
 - [Pydata Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/stable/)
 
-For other themes, add [custom templates and custom CSS](/customization.md).
+For other themes, you can add the DocSearch UI with [custom templates and custom CSS](/customization.md).
