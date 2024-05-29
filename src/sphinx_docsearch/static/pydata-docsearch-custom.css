@@ -10,3 +10,14 @@
 .DocSearch-Hits mark {
   padding: 0;
 }
+
+kbd:not(.compound) {
+  padding: 0rem 0rem;
+}
+
+kbd.DocSearch-Commands-Key {
+  border: 0;
+  box-shadow: var(--docsearch-key-shadow);
+  margin: 1px 5px 1px 0px;
+  padding: inherit;
+}
