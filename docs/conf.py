@@ -17,6 +17,9 @@ html_title = "Algolia DocSearch for Sphinx"
 extensions = ["sphinx_docsearch", "myst_parser"]
 myst_enable_extensions = ["colon_fence", "deflist"]
 
+# Ignore Algolia dashboard links
+linkcheck_ignore = [r"https://dashboard.algolia.com/*"]
+
 # DocSearch Sphinx extension
 docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
 docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
