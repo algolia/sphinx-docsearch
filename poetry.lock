@@ -1259,6 +1259,25 @@ sphinx = ">=4.0"
 docs = ["furo", "ipython", "myst-parser", "sphinx-copybutton", "sphinx-inline-tabs"]
 
 [[package]]
+name = "sphinxawesome-theme"
+version = "5.3.0"
+description = "An awesome theme for the Sphinx documentation generator"
+optional = false
+python-versions = "<4.0,>=3.8"
+files = [
+    {file = "sphinxawesome_theme-5.3.0-py3-none-any.whl", hash = "sha256:9cd84a53ee9146b09553f2d59f778bbcafa4fc58ce1bad4c876c5a6898c8907e"},
+    {file = "sphinxawesome_theme-5.3.0.tar.gz", hash = "sha256:4e66ce6aa0db225315246c6c1404052ff2c1484d1c2f1eea7a5ce23ed24f0574"},
+]
+
+[package.dependencies]
+beautifulsoup4 = ">=4.9.1,<5.0.0"
+sphinx = [
+    {version = "<7.2", markers = "python_version >= \"3.8\" and python_version < \"3.9\""},
+    {version = ">=7.2,<7.5", markers = "python_version >= \"3.9\" and python_version < \"3.10\""},
+    {version = ">=8,<9", markers = "python_version >= \"3.10\" and python_version < \"3.13\""},
+]
+
+[[package]]
 name = "sphinxcontrib-applehelp"
 version = "1.0.4"
 description = "sphinxcontrib-applehelp is a Sphinx extension which outputs Apple help books"
@@ -1553,4 +1572,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "dfb3bfffa4254933f9826c359f32e5a6b837bc2244c8b30be59fa85ace081298"
+content-hash = "c6954376b5c4abea6f63fd83145644a9706783225960c71e009a3de823e97001"
