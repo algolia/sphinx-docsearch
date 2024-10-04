@@ -65,7 +65,7 @@ def test_custom_rtd_assets(app: Sphinx) -> None:
     assert any(re.search("_static/rtd-docsearch-custom.css", str(i)) for i in css)
 
 
-@pytest.mark.skipif(sys.version_info < (3,9), reason="requires at least Python 3.9")
+@pytest.mark.skipif(sys.version_info < (3, 9), reason="requires at least Python 3.9")
 @pytest.mark.sphinx(
     "html",
     confoverrides={

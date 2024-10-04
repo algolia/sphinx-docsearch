@@ -14,7 +14,7 @@ def test_global_context(app: Sphinx) -> None:
     pattern = re.compile(r"^docsearch_")
     if hasattr(app.builder, "globalcontext"):
         docsearch_config = filter(pattern.search, app.builder.globalcontext)
-        assert len(list(docsearch_config)) == 8
+        assert len(list(docsearch_config)) == 9
 
     if hasattr(app.builder, "globalcontext"):
         assert "docsearch_app_id" in app.builder.globalcontext
@@ -23,6 +23,7 @@ def test_global_context(app: Sphinx) -> None:
         assert "docsearch_initial_query" in app.builder.globalcontext
         assert "docsearch_container" in app.builder.globalcontext
         assert "docsearch_placeholder" in app.builder.globalcontext
-        assert "docsearch_search_parameter" in app.builder.globalcontext
+        assert "docsearch_search_parameters" in app.builder.globalcontext
+        assert "docsearch_max_results_per_group" in app.builder.globalcontext
         assert "docsearch_missing_results_url" in app.builder.globalcontext
         assert app.builder.globalcontext["docsearch_container"] == "#docsearch"

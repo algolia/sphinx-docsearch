@@ -5,8 +5,9 @@ from io import StringIO
 from pathlib import Path
 
 import pytest
-import sphinx_docsearch
 from sphinx.application import Sphinx
+
+import sphinx_docsearch
 
 
 def test_returns_version() -> None:
@@ -26,7 +27,8 @@ def test_docsearch_config(app: Sphinx) -> None:
     assert app.config.docsearch_container == "#docsearch"
     assert not app.config.docsearch_initial_query
     assert not app.config.docsearch_placeholder
-    assert not app.config.docsearch_search_parameter
+    assert not app.config.docsearch_search_parameters
+    assert not app.config.docsearch_max_results_per_group
     assert not app.config.docsearch_missing_results_url
 
 
@@ -60,7 +62,8 @@ def test_raises_warnings(app: Sphinx, warning: StringIO) -> None:
         "docsearch_container": "test_docsearch_container",
         "docsearch_placeholder": "test_docsearch_placeholder",
         "docsearch_initial_query": "test_docsearch_initial_query",
-        "docsearch_search_parameter": "test_docsearch_parameter",
+        "docsearch_search_parameters": {"hitsPerPage": 5},
+        "docsearch_max_results_per_group": 10,
         "docsearch_missing_results_url": "test_docsearch_url",
     },
 )
@@ -75,5 +78,6 @@ def test_add_docsearch_config(app: Sphinx, warning: StringIO) -> None:
     assert app.config.docsearch_container == "test_docsearch_container"
     assert app.config.docsearch_placeholder == "test_docsearch_placeholder"
     assert app.config.docsearch_initial_query == "test_docsearch_initial_query"
-    assert app.config.docsearch_search_parameter == "test_docsearch_parameter"
+    assert app.config.docsearch_search_parameters == {"hitsPerPage": 5}
+    assert app.config.docsearch_max_results_per_group == 10
     assert app.config.docsearch_missing_results_url == "test_docsearch_url"
