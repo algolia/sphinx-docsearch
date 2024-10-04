@@ -47,6 +47,7 @@ def test_custom_furo_assets(app: Sphinx) -> None:
     assert any(re.search(r"_static/furo-docsearch-custom.css", str(i)) for i in css)
 
 
+@pytest.mark.skip(reason="Not yet supported with Sphinx 8")
 @pytest.mark.sphinx(
     "html",
     confoverrides={

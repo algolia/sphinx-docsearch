@@ -17,14 +17,14 @@ html_title = "Algolia DocSearch for Sphinx"
 extensions = ["sphinx_docsearch", "myst_parser"]
 myst_enable_extensions = ["colon_fence", "deflist"]
 linkcheck_ignore = ["https://dashboard.algolia.com"]
-
-# Ignore Algolia dashboard links
-linkcheck_ignore = [r"https://dashboard.algolia.com/*"]
+html_show_sourcelink = False
 
 # DocSearch Sphinx extension
 docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
 docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
 docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
+
+tags.add("furo")  # noqa
 
 # Support building the docs with different themes
 # Add `-t alabaster` or `-t rtd` to the build arguments

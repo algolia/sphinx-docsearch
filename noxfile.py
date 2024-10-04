@@ -36,7 +36,7 @@ def install_with_group(s: Session, group: str = "dev") -> None:
 @session(python=python_versions)
 def docs(s: Session) -> None:
     """Build the docs."""
-    args = ["-aWTE", "docs", "docs/_dist"]
+    args = ["-aWTE", "docs", "docs/_dist", "-t", "furo"]
     sphinx_build = "sphinx-build"
 
     if "--live" in s.posargs:

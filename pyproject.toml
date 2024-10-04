@@ -20,26 +20,36 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 sphinx = [
-  { version = "<7.2", python = ">=3.8,<3.9"},
-  { version = "^7.2,<7.4", python = ">=3.9,<3.13"},
+  {version = "<7.2", python = ">=3.8,<3.9"},
+  {version = "^7.2,<7.5", python = ">=3.9,<3.10"},
+  {version = "^8,<9", python = ">=3.10"},
 ]
+
+
+[tool.poetry.group.lint]
+optional = true
 
 [tool.poetry.group.lint.dependencies]
 ruff = "*"
 
+[tool.poetry.group.docs]
+optional = true
+
 [tool.poetry.group.docs.dependencies]
-sphinx-autobuild = [
-  { version = "^2021.3.14", python = ">=3.8,<3.9" },
-  { version = "^2024.2.4", python = ">=3.9, <3.13"},
+sphinx-autobuild = "*"
+python-dotenv = "*"
+furo = "*"
+myst-parser = [
+  {version="^3", python=">=3.8,<3.10"},
+  {version="^4", python=">=3.10"}
 ]
-python-dotenv = "^1.0.0"
-furo = "^2024.1.29"
-myst-parser = "^3.0.0"
-sphinx_rtd_theme = "^2.0.0"
-sphinxawesome-theme = "^5.1"
-pydata-sphinx-theme = [
- { version = "^0.15.2", python = ">=3.9"}
-]
+# Not yet supported with Sphinx 8
+# sphinx_rtd_theme = "*"
+# sphinxawesome-theme = "*"
+pydata-sphinx-theme = "*"
+
+[tool.poetry.group.dev]
+optional = true
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8"
