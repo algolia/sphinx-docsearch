@@ -88,7 +88,8 @@ def add_docsearch_assets(app: Sphinx, config: Config) -> None:
             "docsearch_container": app.config.docsearch_container,
             "docsearch_initial_query": app.config.docsearch_initial_query,
             "docsearch_placeholder": app.config.docsearch_placeholder,
-            "docsearch_search_parameter": app.config.docsearch_search_parameter,
+            "docsearch_search_parameters": app.config.docsearch_search_parameters,
+            "docsearch_max_results_per_group": app.config.docsearch_max_results_per_group,
             "docsearch_missing_results_url": app.config.docsearch_missing_results_url,
         }
     )
@@ -111,10 +112,13 @@ def setup(app: Sphinx) -> dict[str, Any]:
         "docsearch_placeholder", default="", rebuild="html", types=[str]
     )
     app.add_config_value(
-        "docsearch_search_parameter", default="", rebuild="html", types=[str]
+        "docsearch_search_parameters", default={}, rebuild="html", types=[dict]
     )
     app.add_config_value(
         "docsearch_missing_results_url", default="", rebuild="html", types=[str]
+    )
+    app.add_config_value(
+        "docsearch_max_results_per_group", default="", rebuild="html", types=[int]
     )
 
     app.connect("config-inited", check_config)

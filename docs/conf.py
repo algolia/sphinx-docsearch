@@ -16,6 +16,7 @@ html_title = "Algolia DocSearch for Sphinx"
 # General configuration
 extensions = ["sphinx_docsearch", "myst_parser"]
 myst_enable_extensions = ["colon_fence", "deflist"]
+linkcheck_ignore = ["https://dashboard.algolia.com"]
 
 # Ignore Algolia dashboard links
 linkcheck_ignore = [r"https://dashboard.algolia.com/*"]
@@ -44,4 +45,3 @@ else:
     html_theme = "sphinxawesome_theme"
     html_permalinks_icon = Icons.permalinks_icon
     html_theme_options = {"awesome_external_links": True}
-    extensions += ["sphinxawesome_theme.highlighting"]
