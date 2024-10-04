@@ -45,7 +45,7 @@ myst-parser = [
 ]
 # Not yet supported with Sphinx 8
 # sphinx_rtd_theme = "*"
-# sphinxawesome-theme = "*"
+sphinxawesome-theme = "*"
 pydata-sphinx-theme = "*"
 
 [tool.poetry.group.dev]
