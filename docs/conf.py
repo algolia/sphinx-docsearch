@@ -24,6 +24,8 @@ docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
 docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
 docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
 
+tags.add("furo")
+
 # Support building the docs with different themes
 # Add `-t alabaster` or `-t rtd` to the build arguments
 if tags.has("rtd"):  # noqa
