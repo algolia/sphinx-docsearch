@@ -11,6 +11,8 @@ docsearch({
   {%- endif %}
   {%- if docsearch_search_parameters %}
   searchParameters: "{{ docsearch_search_parameters }}",
+  {%- if docsearch_max_results_per_group %}
+  maxResultsPerGroup: {{ docsearch_max_results_per_group }}
   {%- endif %}
   {%- if docsearch_missing_results_url %}
   getMissingResultsUrl({ query }) {

@@ -29,7 +29,7 @@ After applying to DocSearch, Algolia automatically crawls and indexes your docs.
 
 This extension does not configure the crawler.
 Because each Sphinx theme controls how the content is rendered,
-you may need to adapt the configuration in the [Crawler dashboard](https://crawler.algolia.com/admin.
+you may need to adapt the configuration in the [Crawler dashboard](https://crawler.algolia.com/admin).
 
 :::
 

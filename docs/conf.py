@@ -21,6 +21,7 @@ myst_enable_extensions = ["colon_fence", "deflist"]
 docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")
 docsearch_api_key = os.getenv("DOCSEARCH_API_KEY")
 docsearch_index_name = os.getenv("DOCSEARCH_INDEX_NAME")
+docsearch_search_parameter = {"hitsPerPage": 5}
 
 # Support building the docs with different themes
 # Add `-t alabaster` or `-t rtd` to the build arguments
@@ -41,4 +42,3 @@ else:
     html_theme = "sphinxawesome_theme"
     html_permalinks_icon = Icons.permalinks_icon
     html_theme_options = {"awesome_external_links": True}
-    extensions += ["sphinxawesome_theme.highlighting"]
