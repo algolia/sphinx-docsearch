@@ -21,3 +21,7 @@ kbd.DocSearch-Commands-Key {
   margin: 1px 5px 1px 0px;
   padding: inherit;
 }
+
+.navbar-header-items__end {
+  flex-flow: initial;
+}
