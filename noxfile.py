@@ -13,7 +13,7 @@ from nox import Session, options, session
 
 options.stop_on_first_error = True
 
-python_versions = ["3.12", "3.11", "3.10", "3.9", "3.8"]
+python_versions = ["3.13", "3.12", "3.11", "3.10", "3.9", "3.8"]
 
 
 def install_with_group(s: Session, group: str = "dev") -> None:
