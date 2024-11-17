@@ -33,7 +33,7 @@ def _jsdelivr_file_name(package: str) -> str:
     """Get the filename for an asset on jsDelivr from NPM."""
     npm_uri = f"https://registry.npmjs.org/{package}/latest"
     response = httpx.get(npm_uri)
-    return response.json()["jsdelivr"]  # type: ignore[no-any-return]
+    return response.json()["jsdelivr"]
 
 
 if __name__ == "__main__":

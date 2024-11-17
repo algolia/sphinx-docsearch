@@ -6,7 +6,7 @@ import pytest
 from _pytest.config import Config
 from sphinx import version_info
 
-if version_info >= (7, 2):
+if version_info >= (7, 2):  # type: ignore
     from pathlib import Path
 else:
     from sphinx.testing.path import path
@@ -18,10 +18,10 @@ collect_ignore = ["roots"]
 @pytest.fixture(scope="session")
 def rootdir() -> Any:  # noqa: ANN401
     """Root directory for test files."""
-    if version_info >= (7, 2):
-        return Path(__file__).parent.absolute() / "roots"
+    if version_info >= (7, 2):  # type: ignore
+        return Path(__file__).parent.absolute() / "roots"  # type: ignore
     else:
-        return path(__file__).parent.abspath() / "roots"
+        return path(__file__).parent.abspath() / "roots"  # type: ignore
 
 
 def pytest_configure(config: Config) -> None:

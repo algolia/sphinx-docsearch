@@ -21,14 +21,14 @@ def test_docsearch_assets(app: Sphinx) -> None:
     test_file = read_as_html(Path(app.outdir) / "index.html")
 
     css = test_file.select("link[rel='stylesheet']")
-    css = [x["href"] for x in css]  # type: ignore
+    css = [x["href"] for x in css]
     assert any(re.search(r"_static/docsearch.css", str(i)) for i in css)
     assert any(
         re.search(r"_static/alabaster-docsearch-custom.css", str(i)) for i in css
     )
 
     scripts = test_file.select("script")
-    scripts = [x["src"] for x in scripts]  # type: ignore
+    scripts = [x["src"] for x in scripts]
     assert any(re.search(r"_static/docsearch.js", str(i)) for i in scripts)
     assert any(re.search(r"_static/docsearch_config.js", str(i)) for i in scripts)
 
@@ -43,7 +43,7 @@ def test_custom_furo_assets(app: Sphinx) -> None:
     test_file = read_as_html(Path(app.outdir) / "index.html")
 
     css = test_file.select("link[rel='stylesheet']")
-    css = [x["href"] for x in css]  # type: ignore
+    css = [x["href"] for x in css]
     assert any(re.search(r"_static/furo-docsearch-custom.css", str(i)) for i in css)
 
 
@@ -62,7 +62,7 @@ def test_custom_rtd_assets(app: Sphinx) -> None:
     test_file = read_as_html(Path(app.outdir) / "index.html")
 
     css = test_file.select("link[rel='stylesheet']")
-    css = [x["href"] for x in css]  # type: ignore
+    css = [x["href"] for x in css]
     assert any(re.search("_static/rtd-docsearch-custom.css", str(i)) for i in css)
 
 
@@ -81,5 +81,5 @@ def test_custom_pydata_assets(app: Sphinx) -> None:
     test_file = read_as_html(Path(app.outdir) / "index.html")
 
     css = test_file.select("link[rel='stylesheet']")
-    css = [x["href"] for x in css]  # type: ignore
+    css = [x["href"] for x in css]
     assert any(re.search("_static/pydata-docsearch-custom.css", str(i)) for i in css)
