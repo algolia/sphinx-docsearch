@@ -89,5 +89,8 @@ typecheck = [
     "sphinxawesome-theme",
 ]
 lint = [
-    "ruff>=0.7.4",
+    "ruff",
+]
+update = [
+    "httpx",
 ]

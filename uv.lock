@@ -1197,9 +1197,6 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
-dev = [
-    { name = "sphinx-rtd-theme" },
-]
 docs = [
     { name = "furo" },
     { name = "myst-parser", version = "3.0.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10' or python_full_version >= '3.13'" },
@@ -1209,6 +1206,7 @@ docs = [
     { name = "python-dotenv" },
     { name = "sphinx-autobuild", version = "2021.3.14", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9' or python_full_version >= '3.13'" },
     { name = "sphinx-autobuild", version = "2024.10.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9' and python_full_version < '3.13'" },
+    { name = "sphinx-rtd-theme" },
     { name = "sphinxawesome-theme", version = "4.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9' and python_full_version < '3.13'" },
     { name = "sphinxawesome-theme", version = "5.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9' or python_full_version >= '3.13'" },
 ]
@@ -1223,6 +1221,7 @@ test = [
     { name = "pytest" },
     { name = "pytest-cov", version = "5.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9' or python_full_version >= '3.13'" },
     { name = "pytest-cov", version = "6.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9' and python_full_version < '3.13'" },
+    { name = "sphinx-rtd-theme" },
 ]
 typecheck = [
     { name = "beautifulsoup4" },
@@ -1234,27 +1233,31 @@ typecheck = [
     { name = "sphinxawesome-theme", version = "4.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9' and python_full_version < '3.13'" },
     { name = "sphinxawesome-theme", version = "5.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9' or python_full_version >= '3.13'" },
 ]
+update = [
+    { name = "httpx" },
+]
 
 [package.metadata]
 requires-dist = [{ name = "sphinx", specifier = ">7,<9" }]
 
 [package.metadata.requires-dev]
-dev = [{ name = "sphinx-rtd-theme", specifier = ">=3.0.2" }]
 docs = [
     { name = "furo" },
     { name = "myst-parser" },
     { name = "pydata-sphinx-theme" },
     { name = "python-dotenv" },
     { name = "sphinx-autobuild" },
+    { name = "sphinx-rtd-theme" },
     { name = "sphinxawesome-theme" },
 ]
-lint = [{ name = "ruff", specifier = ">=0.7.4" }]
+lint = [{ name = "ruff" }]
 test = [
     { name = "beautifulsoup4" },
     { name = "furo" },
     { name = "pydata-sphinx-theme" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "sphinx-rtd-theme" },
 ]
 typecheck = [
     { name = "beautifulsoup4" },
@@ -1265,6 +1268,7 @@ typecheck = [
     { name = "python-dotenv" },
     { name = "sphinxawesome-theme" },
 ]
+update = [{ name = "httpx" }]
 
 [[package]]
 name = "sphinx-rtd-theme"

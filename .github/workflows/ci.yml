@@ -6,6 +6,31 @@ on:
       - "*.*.*"
   pull_request:
 jobs:
+  docs:
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.13"]
+        theme: ["alabaster", "awesome", "furo", "pydata", "rtd"]
+    name: Build docs with ${{ matrix.theme }} theme on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install nox
+        run: |
+          uv tool install nox
+      - name: Build docs
+        run: |
+          nox -p ${{ matrix.python-version }} -s docs -- -t ${{ matrix.theme }}
+        env:
+          DOCSEARCH_APP_ID: test
+          DOCSEARCH_API_KEY: test
+          DOCSEARCH_INDEX_NAME: test
   test:
     strategy:
       matrix:
