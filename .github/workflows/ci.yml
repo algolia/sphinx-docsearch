@@ -74,7 +74,7 @@ jobs:
         run: nox -s check_links
   release:
     name: Publish to PyPI
-    needs: [test, lint]
+    needs: [test, lint, docs]
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
     runs-on: ubuntu-latest
     steps:
