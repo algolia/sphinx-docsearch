@@ -116,24 +116,16 @@ def export(s: nox.Session) -> None:
     )
 
 
-#
-#
-# @session(python=False)
-# def publish(s: Session) -> None:
-#     """Publish this package to the Python package index (PyPI).
-#
-#     Since Poetry is installed globally,
-#     skip the virtual environment creation.
-#
-#     Always build the package before publishing.
-#
-#     Requires the environment variable `POETRY_PYPI_TOKEN_PYPI`
-#     with the token for publishing the package to PyPI.
-#     """
-#     build(s)
-#     s.run("poetry", "publish", external=True)
-#
-#
+@nox.session(python=False)
+def publish(s: nox.Session) -> None:
+    """Publish this package to the Python package index (PyPI).
+
+    Requires the environment variable `UV_PUBLISH_TOKEN`.
+    """
+    build(s)
+    s.run("uv", "publish", external=True)
+
+
 @nox.session(python=False)
 def clean(s: nox.Session) -> None:
     """Delete artifacts."""

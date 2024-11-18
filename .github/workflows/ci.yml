@@ -1,102 +1,68 @@
 name: CI
-
 on:
   push:
     branches: [main]
     tags:
       - "*.*.*"
   pull_request:
-
 jobs:
   test:
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-
+        python-version: ["3.8", "3.13"]
     name: Test with Python ${{ matrix.python-version }}
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Install nox and poetry
+      - name: Install nox
         run: |
-          pip install -U pip nox poetry poetry-plugin-export
-          nox --version
-          pip --version
-          poetry --version
-
-      - name: Run tests
+          uv tool install nox
+      - name: Run workflow
         run: |
           nox -p ${{ matrix.python-version }}
         env:
           DOCSEARCH_APP_ID: test
           DOCSEARCH_API_KEY: test
           DOCSEARCH_INDEX_NAME: test
-
   lint:
     name: Lint
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.12
-
-      - name: Install nox and poetry
+          python-version: 3.13
+      - name: Install nox
         run: |
-          pip install -U pip nox poetry poetry-plugin-export
-          nox --version
-          pip --version
-          poetry --version
-
+          uv tool install nox
       - name: Lint Python code
         run: nox -s lint
-
       - name: Check links
         run: nox -s check_links
-
   release:
     name: Publish to PyPI
     needs: [test, lint]
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.12
-
-      - name: Install nox and poetry
+          python-version: 3.13
+      - name: Install nox
         run: |
-          pip install -U pip nox poetry poetry-plugin-export
-          nox --version
-          pip --version
-          poetry --version
-
+          uv tool install nox
       - name: Publish package
         env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: nox -s publish
-
-  tag-release:
-    name: Tag new release
-    needs: release
-    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: false

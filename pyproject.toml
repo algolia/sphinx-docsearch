@@ -67,6 +67,9 @@ docs = [
     "python-dotenv",
     "sphinx-autobuild",
     "sphinxawesome-theme",
+    "furo",
+    "pydata-sphinx-theme",
+    "sphinx-rtd-theme",
 ]
 test = [
     "pytest-cov",
@@ -74,6 +77,7 @@ test = [
     "beautifulsoup4",
     "furo",
     "pydata-sphinx-theme",
+    "sphinx-rtd-theme",
 ]
 typecheck = [
     "pyright",
