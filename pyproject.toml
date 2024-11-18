@@ -91,6 +91,3 @@ typecheck = [
 lint = [
     "ruff",
 ]
-update = [
-    "httpx",
-]

@@ -1233,9 +1233,6 @@ typecheck = [
     { name = "sphinxawesome-theme", version = "4.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9' and python_full_version < '3.13'" },
     { name = "sphinxawesome-theme", version = "5.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9' or python_full_version >= '3.13'" },
 ]
-update = [
-    { name = "httpx" },
-]
 
 [package.metadata]
 requires-dist = [{ name = "sphinx", specifier = ">7,<9" }]
@@ -1268,7 +1265,6 @@ typecheck = [
     { name = "python-dotenv" },
     { name = "sphinxawesome-theme" },
 ]
-update = [{ name = "httpx" }]
 
 [[package]]
 name = "sphinx-rtd-theme"
