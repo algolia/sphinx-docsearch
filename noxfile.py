@@ -15,7 +15,7 @@ nox.options.stop_on_first_error = True
 nox.options.default_venv_backend = "uv"
 nox.options.sessions = ["tests", "typecheck"]
 
-python_versions = ["3.8", "3.13"]
+python_versions = ["3.9", "3.13"]
 
 
 def get_requirements(groups: list[str] | str | None = None) -> list[str]:
@@ -115,16 +115,6 @@ def export(s: nox.Session) -> None:
         "--output-file=docs/requirements.txt",
         external=True,
     )
-
-
-@nox.session(python=False)
-def publish(s: nox.Session) -> None:
-    """Publish this package to the Python package index (PyPI).
-
-    Requires the environment variable `UV_PUBLISH_TOKEN`.
-    """
-    build(s)
-    s.run("uv", "publish", external=True)
 
 
 @nox.session(python=False)
