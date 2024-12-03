@@ -12,9 +12,10 @@ from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any
 
-from sphinx.application import Config, Sphinx
+from sphinx.application import Sphinx
 from sphinx.builders.dirhtml import DirectoryHTMLBuilder
 from sphinx.builders.html import StandaloneHTMLBuilder
+from sphinx.config import Config
 from sphinx.locale import __
 from sphinx.util import logging
 

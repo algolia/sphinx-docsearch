@@ -1,32 +1,26 @@
 name: Assets
-
 on:
   schedule:
     - cron: "37 3 * * 0"
   workflow_dispatch:
-
 jobs:
   update:
-    name: Update DocSearch assets
+    name: Update dependencies
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Install poetry
+          python-version: "3.13"
+      - name: Update dependencies
         run: |
-          pip install -U pip poetry
-          poetry --version
-          poetry install --with dev
-
+          uv sync -U
       - name: Update assets
-        run: poetry run python update_assets.py
-
+        run: |
+          uv run --with httpx update_assets.py
       - name: Create PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -37,11 +31,11 @@ jobs:
             git config --global user.email "noreply@algolia.com"
             git checkout -b "${branch}"
             git add .
-            git commit --message "chore: update DocSearch assets"
+            git commit --message "chore: update dependencies"
             git push --force --set-upstream origin "${branch}"
             if ! [[ "$(gh pr list --base main --head ${branch})" ]]; then
-              gh pr create --title "Update DocSearch assets" --body "Update DocSearch assets"
+              gh pr create --title "Update dependencies" --body "Update dependencies"
             fi
           else
-            echo "DocSearch assets up to date."
+            echo "Dependencies up to date."
           fi

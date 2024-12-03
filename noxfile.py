@@ -4,37 +4,43 @@ Requires [Nox](https://nox.thea.codes/).
 
 - Run `nox -ls` to list all sessions.
 - Run `nox -s <NAME>` to run the session _`<NAME>`_.
-- Run `nox -s docs -p 3.12 -- --live` to build the docs with live-reloading.
+- Run `nox -s docs -p 3.13 -- --live` to build the docs with live-reloading.
 """
 
-import tempfile
+from __future__ import annotations
 
-from nox import Session, options, session
+import nox
 
-options.stop_on_first_error = True
+nox.options.stop_on_first_error = True
+nox.options.default_venv_backend = "uv"
+nox.options.sessions = ["tests", "typecheck"]
 
-python_versions = ["3.12", "3.11", "3.10", "3.9", "3.8"]
-
-
-def install_with_group(s: Session, group: str = "dev") -> None:
-    """Install group dependencies from Poetry."""
-    with tempfile.NamedTemporaryFile() as requirements:
-        s.run(
-            "poetry",
-            "export",
-            "--without-hashes",
-            "--with",
-            group,
-            "--output",
-            requirements.name,
-            external=True,
-        )
-        s.install("-r", requirements.name)
-        s.install(".")
+python_versions = ["3.9", "3.13"]
 
 
-@session(python=python_versions)
-def docs(s: Session) -> None:
+def get_requirements(groups: list[str] | str | None = None) -> list[str]:
+    """Load requirements from a `pyproject.toml` file."""
+    pyproject = nox.project.load_toml("pyproject.toml")
+    pkgs = pyproject["project"]["dependencies"]
+
+    if groups and "dependency-groups" in pyproject:
+        for g in groups if isinstance(groups, list) else [groups]:
+            pkgs += pyproject["dependency-groups"].get(g, [])
+
+    return pkgs
+
+
+def install_requirements(
+    session: nox.Session, groups: list[str] | str | None = None
+) -> None:
+    """Install requirements into the session's environment."""
+    requirements = get_requirements(groups)
+    session.install(*requirements)
+    session.install("-e", ".")
+
+
+@nox.session(python=python_versions)
+def docs(s: nox.Session) -> None:
     """Build the docs."""
     args = ["-aWTE", "docs", "docs/_dist"]
     sphinx_build = "sphinx-build"
@@ -46,98 +52,72 @@ def docs(s: Session) -> None:
     if s.posargs:
         args = s.posargs + args
 
-    install_with_group(s, "docs")
+    install_requirements(s, "docs")
     s.run(sphinx_build, *args)
 
 
-@session
-def check_links(s: Session) -> None:
+@nox.session
+def check_links(s: nox.Session) -> None:
     """Check links in docs."""
     args = ["-b", "linkcheck", "docs", "docs/_dist/_links"]
 
     if s.posargs:
         args = s.posargs + args
 
-    install_with_group(s, "docs")
+    install_requirements(s, "docs")
     s.run("sphinx-build", *args)
 
 
-@session
-def fmt(s: Session) -> None:
+@nox.session
+def fmt(s: nox.Session) -> None:
     """Format the code with ruff."""
-    install_with_group(s, "lint")
+    install_requirements(s, "lint")
     s.run("ruff", "check", ".", "--select", "I", "--fix")
     s.run("ruff", "format", ".")
 
 
-@session
-def lint(s: Session) -> None:
+@nox.session
+def lint(s: nox.Session) -> None:
     """Lint the code with ruff."""
-    install_with_group(s, "lint")
+    install_requirements(s, "lint")
     s.run("ruff", "check", ".")
 
 
-@session(python=python_versions)
-def tests(s: Session) -> None:
+@nox.session(python=python_versions)
+def tests(s: nox.Session) -> None:
     """Run unit tests."""
     args = s.posargs or ["--cov"]
-    install_with_group(s, "dev,docs")
+    install_requirements(s, "test")
     s.run("pytest", *args)
 
 
-@session(python=["3.8", "3.12"])
-def typecheck(s: Session) -> None:
+@nox.session(python=python_versions)
+def typecheck(s: nox.Session) -> None:
     """Typecheck."""
-    install_with_group(s, "dev")
-    s.run("mypy", ".", "--exclude", "docs")
+    install_requirements(s, "typecheck")
+    s.run("pyright")
 
 
-@session(python=False)
-def build(s: Session) -> None:
-    """Build the packages using Poetry.
-
-    Since Poetry is installed globally,
-    skip the virtual environment creation.
-    """
-    s.run("poetry", "build", external=True)
+@nox.session(python=False)
+def build(s: nox.Session) -> None:
+    """Build the packages."""
+    s.run("uv", "build", external=True)
 
 
-@session(python=False)
-def export(s: Session) -> None:
-    """Export Poetry dependencies for ReadTheDocs.
-
-    Since Poetry is installed globally,
-    skip the virtual environment creation.
-    """
+@nox.session(python=False)
+def export(s: nox.Session) -> None:
+    """Export dependencies for ReadTheDocs."""
     s.run(
-        "poetry",
+        "uv",
         "export",
-        "--with",
-        "docs",
-        "--without-hashes",
-        "--output",
-        "docs/requirements.txt",
+        "--group=docs",
+        "--no-hashes",
+        "--output-file=docs/requirements.txt",
         external=True,
     )
 
 
-@session(python=False)
-def publish(s: Session) -> None:
-    """Publish this package to the Python package index (PyPI).
-
-    Since Poetry is installed globally,
-    skip the virtual environment creation.
-
-    Always build the package before publishing.
-
-    Requires the environment variable `POETRY_PYPI_TOKEN_PYPI`
-    with the token for publishing the package to PyPI.
-    """
-    build(s)
-    s.run("poetry", "publish", external=True)
-
-
-@session(python=False)
-def clean(s: Session) -> None:
+@nox.session(python=False)
+def clean(s: nox.Session) -> None:
     """Delete artifacts."""
     s.run("rm", "-rv", "dist", "docs/_dist")
