@@ -1,6 +1,6 @@
 [project]
 name = "sphinx-docsearch"
-version = "0.2.0"
+version = "0.2.0b1"
 description = "A Sphinx extension for replacing the built-in search with Algolia DocSearch"
 readme = "README.md"
 authors = [
