@@ -20,7 +20,7 @@ jobs:
           uv sync -U
       - name: Update assets
         run: |
-          uv run --with httpx update_assets.py
+          uv run update_assets.py
       - name: Create PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

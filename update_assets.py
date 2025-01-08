@@ -1,3 +1,9 @@
+# /// script
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
 """Update DocSearch assets from jsDelivr.
 
 This extension bundles the JavaScript and CSS for DocSearch.
