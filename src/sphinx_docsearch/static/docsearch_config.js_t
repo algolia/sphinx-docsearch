@@ -13,11 +13,11 @@ docsearch({
   searchParameters: {{ docsearch_search_parameters | tojson }},
   {%- endif %}
   {%- if docsearch_max_results_per_group %}
-  maxResultsPerGroup: {{ docsearch_max_results_per_group }}
+  maxResultsPerGroup: {{ docsearch_max_results_per_group }},
   {%- endif %}
   {%- if docsearch_missing_results_url %}
   getMissingResultsUrl({ query }) {
     return `{{ docsearch_missing_results_url }}`
-  }
+  },
   {%- endif %}
 });
