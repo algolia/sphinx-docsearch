@@ -16,7 +16,7 @@ from .utils import read_as_html
     },
 )
 def test_no_builtin_search(app: Sphinx) -> None:
-    """It adds all the DocSearch assets to the HTML output."""
+    """It adds the docsearch container to the DOM."""
     app.build()
 
     test_file = read_as_html(Path(app.outdir) / "index.html")

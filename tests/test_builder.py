@@ -9,7 +9,7 @@ from sphinx.application import Sphinx
 
 @pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"]})
 def test_no_builtin_search(app: Sphinx) -> None:
-    """It adds all the DocSearch assets to the HTML output."""
+    """It doesn't add the builtin search assets to the HTML output."""
     app.build()
     assert app.builder.search is False  # type: ignore
     assert not os.path.exists(Path(app.outdir) / "search.html")
