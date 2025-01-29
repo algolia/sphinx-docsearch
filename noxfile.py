@@ -13,7 +13,7 @@ import nox
 
 nox.options.stop_on_first_error = True
 nox.options.default_venv_backend = "uv"
-nox.options.sessions = ["tests", "typecheck"]
+nox.options.sessions = ["tests", "typecheck", "docs"]
 
 python_versions = ["3.9", "3.13"]
 
