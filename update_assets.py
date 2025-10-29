@@ -26,7 +26,7 @@ def update_docsearch_assets() -> None:
 def _download_asset(package: str) -> None:
     """Download an asset from jsDelivr."""
     cdn_uri = (
-        f"https://cdn.jsdelivr.net/npm/{package}@latest/{_jsdelivr_file_name(package)}"
+        f"https://cdn.jsdelivr.net/npm/{package}@4/{_jsdelivr_file_name(package)}"
     )
     response = httpx.get(cdn_uri)
     output = package.replace("@", "").replace("/", ".")

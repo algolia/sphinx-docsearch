@@ -11,7 +11,7 @@ jobs:
       matrix:
         python-version:
           - 3.9
-          - 3.13
+          - 3.14
         theme: ["alabaster", "awesome", "furo", "pydata", "rtd"]
     name: Build docs with ${{ matrix.theme }} theme on Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
   test:
     strategy:
       matrix:
-        python-version: ["3.9", "3.13"]
+        python-version: ["3.9", "3.14"]
     name: Test with Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     steps:
@@ -66,7 +66,7 @@ jobs:
         uses: astral-sh/setup-uv@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: 3.14
       - name: Install nox
         run: |
           uv tool install nox

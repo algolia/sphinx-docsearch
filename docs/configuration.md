@@ -52,7 +52,7 @@ For more information, see [Search API parameter](https://www.algolia.com/doc/api
 
 **`docsearch_max_results_per_group`** (default: 5)
 : The number of results shown in each group.
-Groups are defined by the [`lvl0`](https://docsearch.algolia.com/docs/record-extractor#lvl0) selector in your DocSearch crawler configuration.
+Groups are defined by the [`lvl0`](https://docsearch.algolia.com/docs/record-extractor/#lvl0) selector in your DocSearch crawler configuration.
 By default, there's only one group with the name _Documentation_.
 
 **`docsearch_missing_results_url`**

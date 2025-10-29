@@ -4,7 +4,7 @@ Requires [Nox](https://nox.thea.codes/).
 
 - Run `nox -ls` to list all sessions.
 - Run `nox -s <NAME>` to run the session _`<NAME>`_.
-- Run `nox -s docs -p 3.13 -- --live` to build the docs with live-reloading.
+- Run `nox -s docs -p 3.14 -- --live` to build the docs with live-reloading.
 """
 
 from __future__ import annotations
@@ -15,7 +15,7 @@ nox.options.stop_on_first_error = True
 nox.options.default_venv_backend = "uv"
 nox.options.sessions = ["tests", "typecheck", "docs"]
 
-python_versions = ["3.9", "3.13"]
+python_versions = ["3.9", "3.14"]
 
 
 def get_requirements(groups: list[str] | str | None = None) -> list[str]:
