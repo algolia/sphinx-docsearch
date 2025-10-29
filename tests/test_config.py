@@ -12,7 +12,7 @@ import sphinx_docsearch
 
 def test_returns_version() -> None:
     """It returns the correct version."""
-    assert sphinx_docsearch.__version__ == "0.2.0b2"
+    assert sphinx_docsearch.__version__ == "0.2.0b3"
 
 
 @pytest.mark.sphinx("html", confoverrides={"extensions": ["sphinx_docsearch"]})
