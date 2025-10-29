@@ -18,7 +18,8 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13"
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14"
 ]
 packages = [
   {include = "sphinx_docsearch", from = "src"}
@@ -66,7 +67,7 @@ docs = [
     "myst-parser",
     "python-dotenv",
     "sphinx-autobuild",
-    "sphinxawesome-theme==6.0.0.b1",
+    "sphinxawesome-theme==6.0.0.b3",
     "furo",
     "pydata-sphinx-theme",
     "sphinx-rtd-theme",
