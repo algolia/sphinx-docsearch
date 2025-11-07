@@ -13,10 +13,11 @@ def test_global_context(app: Sphinx) -> None:
 
     pattern = re.compile(r"^docsearch_")
     docsearch_config = filter(pattern.search, app.builder.globalcontext)
-    assert len(list(docsearch_config)) == 9
+    assert len(list(docsearch_config)) == 10
 
     assert "docsearch_app_id" in app.builder.globalcontext
     assert "docsearch_api_key" in app.builder.globalcontext
+    assert "docsearch_askai" in app.builder.globalcontext
     assert "docsearch_index_name" in app.builder.globalcontext
     assert "docsearch_initial_query" in app.builder.globalcontext
     assert "docsearch_container" in app.builder.globalcontext

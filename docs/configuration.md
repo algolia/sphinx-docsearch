@@ -27,11 +27,7 @@ To get started, see [Ask AI (DocSearch)](https://docsearch.algolia.com/docs/v4/a
 :::
 
 `docsearch_askai`
-: A dictionary with [Ask AI settings](https://docsearch.algolia.com/docs/api#askai).
-
-  - The dictionary must at least have the `assistantId` key for your Ask AI assistant.
-  - Key names in this dictionary are in `camelCase`.
-  - The Ask AI options are passed to DocSearch without validation.
+: A string or dictionary with [Ask AI settings](https://docsearch.algolia.com/docs/api#askai).
 
 ## Optional configuration
 

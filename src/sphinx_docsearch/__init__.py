@@ -51,7 +51,7 @@ def check_config(app: Sphinx, config: Config) -> None:
         logger.warning(
             __("You must provide your Algolia index name for DocSearch to work.")
         )
-    if config.docsearch_askai and not "assistantId" in config.docsearch_askai:
+    if isinstance(config.docsearch_askai, dict) and "assistantId" not in config.docsearch_askai:
         logger.warning(
             msg=__("The docsearch_askai config value must have an assistant_id key.")
         )
@@ -109,7 +109,7 @@ def setup(app: Sphinx) -> dict[str, Any]:
         "docsearch_index_name", default="", rebuild="html", types=[str]
     )
     app.add_config_value(
-        "docsearch_askai", default={}, rebuild="html", types=[dict]
+        "docsearch_askai", default="", rebuild="html", types=[dict,str]
     )
     app.add_config_value(
         "docsearch_container", default="#docsearch", rebuild="html", types=[str]
