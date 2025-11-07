@@ -12,6 +12,7 @@ project = "Algolia DocSearch Sphinx extension"
 author = "Algolia"
 copyright = f"{author}."
 html_title = "Algolia DocSearch for Sphinx"
+templates_path = ["_templates"]
 
 # General configuration
 extensions = ["sphinx_docsearch", "myst_parser"]
