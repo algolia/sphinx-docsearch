@@ -1357,7 +1357,7 @@ wheels = [
 
 [[package]]
 name = "sphinx-docsearch"
-version = "0.2.0b3"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "sphinx", version = "7.4.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
