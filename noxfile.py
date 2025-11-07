@@ -112,6 +112,7 @@ def export(s: nox.Session) -> None:
         "export",
         "--group=docs",
         "--no-hashes",
+        "--python=3.13",
         "--output-file=docs/requirements.txt",
         external=True,
     )
