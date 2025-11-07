@@ -13,13 +13,21 @@ You can find it in the [Algolia dashboard](https://dashboard.algolia.com/account
 **`docsearch_api_key`**
 : Your Search API key.
 You can find it in the [Algolia dashboard](https://dashboard.algolia.com/account/api-keys).
-
-:::{warning}
-Don't use your Write API key, which is used for crawling your content.
-:::
+  :::{warning}
+  Don't use your Write API key, which is used for crawling your content.
+  :::
 
 **`docsearch_index_name`**
 : The Algolia index name for your documentation.
+
+## Ask AI
+
+:::{versionadded} 0.2
+To get started, see [Ask AI (DocSearch)](https://docsearch.algolia.com/docs/v4/askai).
+:::
+
+`docsearch_askai`
+: A string or dictionary with [Ask AI settings](https://docsearch.algolia.com/docs/api#askai).
 
 ## Optional configuration
 
@@ -40,15 +48,15 @@ You can change this setting if you're using a different theme.
 : Any Algolia search parameter you want to add.
 For example, to increase the maximum number of results shown, you can increase the `hitsPerPage` parameter:
 
-```python
-docsearch_search_parameters: {"hitsPerPage": 30}  # default is 20
-```
+  ```python
+  docsearch_search_parameters: {"hitsPerPage": 30}  # default is 20
+  ```
 
-:::{warning}
-This extension does not validate the search parameters.
-Check that you're providing valid parameters.
-For more information, see [Search API parameter](https://www.algolia.com/doc/api-reference/search-api-parameters/).
-:::
+  :::{warning}
+  Search parameters are passed to DocSearch without validation.
+  Check that you're providing valid parameters.
+  For more information, see [Search API parameter](https://www.algolia.com/doc/api-reference/search-api-parameters/).
+  :::
 
 **`docsearch_max_results_per_group`** (default: 5)
 : The number of results shown in each group.
@@ -61,6 +69,6 @@ for users to report issues with missing search results.
 You can include the current search query as parameter `${query}`.
 For example, create a new GitHub issue for the missing search result:
 
-```python
-docsearch_missing_results_url = "https://github.com/example/docs/issues/new?title=${query}"
-```
+  ```python
+  docsearch_missing_results_url = "https://github.com/example/docs/issues/new?title=${query}"
+  ```
