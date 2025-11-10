@@ -72,6 +72,19 @@ jobs:
           uv tool install nox
       - name: Lint Python code
         run: nox -s lint
+  linkcheck:
+    name: Check links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.14
+      - name: Install nox
+        run: |
+          uv tool install nox
       - name: Check links
         run: nox -s check_links
   build:
