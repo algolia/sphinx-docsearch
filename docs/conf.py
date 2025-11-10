@@ -17,7 +17,7 @@ html_title = "Algolia DocSearch for Sphinx"
 extensions = ["sphinx_docsearch", "myst_parser"]
 myst_enable_extensions = ["colon_fence", "deflist"]
 linkcheck_ignore = ["https://dashboard.algolia.com"]
-linkcheck_timeout = 60
+linkcheck_timeout = 90
 html_show_sourcelink = False
 
 # DocSearch Sphinx extension
