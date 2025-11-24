@@ -14,7 +14,7 @@ jobs:
     name: Crawl docs for DocSearch
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Crawl
         uses: algolia/algoliasearch-crawler-github-actions@v1.1.13
