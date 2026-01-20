@@ -54,8 +54,7 @@ ignore = ["D203", "D213", "E501"]
 "tests/*" = ["S101"]
 
 [tool.pyright]
-include = ["src", "tests", "noxfile.py", "update_assets.py"]
-exclude = ["tests/test_context.py"]
+include = ["src", "noxfile.py", "update_assets.py"]
 reportUnnecessaryTypeIgnoreComment = "warning"
 
 [build-system]
