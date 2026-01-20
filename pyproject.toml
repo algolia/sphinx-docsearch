@@ -1,6 +1,6 @@
 [project]
 name = "sphinx-docsearch"
-version = "0.2.0"
+version = "0.3.0"
 description = "A Sphinx extension for replacing the built-in search with Algolia DocSearch"
 readme = "README.md"
 authors = [
@@ -25,7 +25,7 @@ packages = [
   {include = "sphinx_docsearch", from = "src"}
 ]
 dependencies = [
-  "sphinx>7,<9"
+  "sphinx>=7,<10"
 ]
 requires-python = ">=3.9"
 
@@ -67,7 +67,7 @@ docs = [
     "myst-parser",
     "python-dotenv",
     "sphinx-autobuild",
-    "sphinxawesome-theme==6.0.0.b3",
+    "sphinxawesome-theme==6.0.0.b4",
     "furo",
     "pydata-sphinx-theme",
     "sphinx-rtd-theme",
