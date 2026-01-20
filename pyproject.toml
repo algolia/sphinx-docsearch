@@ -1,6 +1,6 @@
 [project]
 name = "sphinx-docsearch"
-version = "0.2.0"
+version = "0.3.0"
 description = "A Sphinx extension for replacing the built-in search with Algolia DocSearch"
 readme = "README.md"
 authors = [
@@ -21,11 +21,8 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14"
 ]
-packages = [
-  {include = "sphinx_docsearch", from = "src"}
-]
 dependencies = [
-  "sphinx>7,<9"
+  "sphinx>=7,<10"
 ]
 requires-python = ">=3.9"
 
@@ -34,6 +31,9 @@ homepage = "https://sphinx-docsearch.readthedocs.io/"
 documentation = "https://sphinx-docsearch.readthedocs.io/"
 repository = "https://github.com/algolia/sphinx-docsearch"
 issues = "https://github.com/algolia/sphinx-docsearch"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sphinx_docsearch"]
 
 [tool.coverage.path]
 source = ["src"]
@@ -54,8 +54,7 @@ ignore = ["D203", "D213", "E501"]
 "tests/*" = ["S101"]
 
 [tool.pyright]
-include = ["src", "tests", "noxfile.py", "update_assets.py"]
-exclude = ["tests/test_context.py"]
+include = ["src", "noxfile.py", "update_assets.py"]
 reportUnnecessaryTypeIgnoreComment = "warning"
 
 [build-system]
@@ -67,7 +66,7 @@ docs = [
     "myst-parser",
     "python-dotenv",
     "sphinx-autobuild",
-    "sphinxawesome-theme==6.0.0.b3",
+    "sphinxawesome-theme==6.0.0.b4",
     "furo",
     "pydata-sphinx-theme",
     "sphinx-rtd-theme",

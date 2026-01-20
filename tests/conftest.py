@@ -6,7 +6,7 @@ import pytest
 from _pytest.config import Config
 from sphinx import version_info
 
-if version_info >= (7, 2):  # type: ignore
+if version_info >= (7, 2):
     from pathlib import Path
 else:
     from sphinx.testing.path import path
