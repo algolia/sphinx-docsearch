@@ -21,9 +21,6 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14"
 ]
-packages = [
-  {include = "sphinx_docsearch", from = "src"}
-]
 dependencies = [
   "sphinx>=7,<10"
 ]
@@ -34,6 +31,9 @@ homepage = "https://sphinx-docsearch.readthedocs.io/"
 documentation = "https://sphinx-docsearch.readthedocs.io/"
 repository = "https://github.com/algolia/sphinx-docsearch"
 issues = "https://github.com/algolia/sphinx-docsearch"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sphinx_docsearch"]
 
 [tool.coverage.path]
 source = ["src"]
