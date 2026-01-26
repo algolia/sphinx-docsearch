@@ -82,6 +82,7 @@ test = [
 typecheck = [
     "pyright",
     "nox",
+    "nox_uv",
     "httpx",
     "python-dotenv",
     "beautifulsoup4",

@@ -10,36 +10,18 @@ Requires [Nox](https://nox.thea.codes/).
 from __future__ import annotations
 
 import nox
+import nox_uv
 
 nox.options.stop_on_first_error = True
 nox.options.default_venv_backend = "uv"
 nox.options.sessions = ["tests", "typecheck", "docs"]
 
-python_versions = ["3.9", "3.14"]
+project = nox.project.load_toml("pyproject.toml")
+supported_python_versions = nox.project.python_versions(project)
+python_versions = [supported_python_versions[0], supported_python_versions[-1]]
 
 
-def get_requirements(groups: list[str] | str | None = None) -> list[str]:
-    """Load requirements from a `pyproject.toml` file."""
-    pyproject = nox.project.load_toml("pyproject.toml")
-    pkgs = pyproject["project"]["dependencies"]
-
-    if groups and "dependency-groups" in pyproject:
-        for g in groups if isinstance(groups, list) else [groups]:
-            pkgs += pyproject["dependency-groups"].get(g, [])
-
-    return pkgs
-
-
-def install_requirements(
-    session: nox.Session, groups: list[str] | str | None = None
-) -> None:
-    """Install requirements into the session's environment."""
-    requirements = get_requirements(groups)
-    session.install(*requirements)
-    session.install("-e", ".")
-
-
-@nox.session(python=python_versions)
+@nox_uv.session(python=python_versions, uv_groups=["docs"])
 def docs(s: nox.Session) -> None:
     """Build the docs."""
     args = ["-aWTE", "docs", "docs/_dist"]
@@ -52,11 +34,10 @@ def docs(s: nox.Session) -> None:
     if s.posargs:
         args = s.posargs + args
 
-    install_requirements(s, "docs")
     s.run(sphinx_build, *args)
 
 
-@nox.session
+@nox_uv.session(uv_groups=["docs"])
 def check_links(s: nox.Session) -> None:
     """Check links in docs."""
     args = ["-b", "linkcheck", "docs", "docs/_dist/_links"]
@@ -64,37 +45,32 @@ def check_links(s: nox.Session) -> None:
     if s.posargs:
         args = s.posargs + args
 
-    install_requirements(s, "docs")
     s.run("sphinx-build", *args)
 
 
-@nox.session
+@nox_uv.session(uv_groups=["lint"])
 def fmt(s: nox.Session) -> None:
     """Format the code with ruff."""
-    install_requirements(s, "lint")
     s.run("ruff", "check", ".", "--select", "I", "--fix")
     s.run("ruff", "format", ".")
 
 
-@nox.session
+@nox_uv.session(uv_groups=["lint"])
 def lint(s: nox.Session) -> None:
     """Lint the code with ruff."""
-    install_requirements(s, "lint")
     s.run("ruff", "check", ".")
 
 
-@nox.session(python=python_versions)
+@nox_uv.session(python=python_versions, uv_groups=["test"])
 def tests(s: nox.Session) -> None:
     """Run unit tests."""
     args = s.posargs or ["--cov"]
-    install_requirements(s, "test")
     s.run("pytest", *args)
 
 
-@nox.session(python=python_versions)
+@nox_uv.session(python=python_versions, uv_groups=["typecheck"])
 def typecheck(s: nox.Session) -> None:
     """Typecheck."""
-    install_requirements(s, "typecheck")
     s.run("pyright")
 
 

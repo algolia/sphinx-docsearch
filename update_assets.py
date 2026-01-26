@@ -13,33 +13,27 @@ the jsDelivr CDN.
 
 import re
 from pathlib import Path
+from typing import Union
 
 import httpx
 
 
-def update_docsearch_assets() -> None:
+def update_docsearch_assets(timeout: Union[float, int] = 10.0) -> None:
     """Update the DocSearch assets."""
-    for package in ["@docsearch/js", "@docsearch/css"]:
-        _download_asset(package)
+    with httpx.Client(timeout=timeout) as client:
+        for package in ["@docsearch/js", "@docsearch/css"]:
+            _download_asset(client, package)
 
 
-def _download_asset(package: str) -> None:
+def _download_asset(client: httpx.Client, package: str) -> None:
     """Download an asset from jsDelivr."""
-    cdn_uri = (
-        f"https://cdn.jsdelivr.net/npm/{package}@4/{_jsdelivr_file_name(package)}"
-    )
-    response = httpx.get(cdn_uri)
+    cdn_uri = f"https://cdn.jsdelivr.net/npm/{package}@4"
+    response = client.get(cdn_uri)
+    response.raise_for_status()
     output = package.replace("@", "").replace("/", ".")
     output_path = Path("src/sphinx_docsearch/static/").resolve()
     with open(Path(output_path / output).absolute(), "w") as f:
         f.write(re.sub(r"//#.*\n$", "", response.text))
-
-
-def _jsdelivr_file_name(package: str) -> str:
-    """Get the filename for an asset on jsDelivr from NPM."""
-    npm_uri = f"https://registry.npmjs.org/{package}/latest"
-    response = httpx.get(npm_uri)
-    return response.json()["jsdelivr"]
 
 
 if __name__ == "__main__":
