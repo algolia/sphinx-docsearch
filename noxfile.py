@@ -78,9 +78,3 @@ def typecheck(s: nox.Session) -> None:
 def build(s: nox.Session) -> None:
     """Build the packages."""
     s.run("uv", "build", external=True)
-
-
-@nox.session(python=False)
-def clean(s: nox.Session) -> None:
-    """Delete artifacts."""
-    s.run("rm", "-rv", "dist", "docs/_dist")

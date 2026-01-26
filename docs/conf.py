@@ -17,8 +17,11 @@ html_title = "Algolia DocSearch for Sphinx"
 extensions = ["sphinx_docsearch", "myst_parser"]
 myst_enable_extensions = ["colon_fence", "deflist"]
 linkcheck_ignore = ["https://dashboard.algolia.com"]
-linkcheck_timeout = 90
 html_show_sourcelink = False
+
+# Some links to docsearch.algolia.com always fail in CI
+if os.getenv("CI"):
+    linkcheck_ignore.append("https://docsearch.algolia.com")
 
 # DocSearch Sphinx extension
 docsearch_app_id = os.getenv("DOCSEARCH_APP_ID")

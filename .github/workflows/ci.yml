@@ -6,6 +6,21 @@ on:
       - "*.*.*"
   pull_request:
 jobs:
+  changes:
+    name: Detect docs changes
+    runs-on: ubuntu-latest
+    outputs:
+      docs: ${{ steps.filter.outputs.docs }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            docs:
+              - "docs/**"
   docs:
     strategy:
       matrix:
@@ -68,6 +83,8 @@ jobs:
   linkcheck:
     name: Check links
     runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.docs == 'true'
     steps:
       - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v7
