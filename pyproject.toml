@@ -32,9 +32,6 @@ documentation = "https://sphinx-docsearch.readthedocs.io/"
 repository = "https://github.com/algolia/sphinx-docsearch"
 issues = "https://github.com/algolia/sphinx-docsearch"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/sphinx_docsearch"]
-
 [tool.coverage.path]
 source = ["src"]
 
@@ -58,8 +55,8 @@ include = ["src", "noxfile.py", "update_assets.py"]
 reportUnnecessaryTypeIgnoreComment = "warning"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.26,<0.10.0"]
+build-backend = "uv_build"
 
 [dependency-groups]
 docs = [
