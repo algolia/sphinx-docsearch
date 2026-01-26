@@ -48,15 +48,15 @@ def check_links(s: nox.Session, uv_groups=["docs"]) -> None:
     s.run("sphinx-build", *args)
 
 
-@nox_uv.session
-def fmt(s: nox.Session, uv_groups=["lint"]) -> None:
+@nox_uv.session(uv_groups=["lint"])
+def fmt(s: nox.Session) -> None:
     """Format the code with ruff."""
     s.run("ruff", "check", ".", "--select", "I", "--fix")
     s.run("ruff", "format", ".")
 
 
-@nox_uv.session
-def lint(s: nox.Session, uv_groups=["lint"]) -> None:
+@nox_uv.session(uv_groups=["lint"])
+def lint(s: nox.Session) -> None:
     """Lint the code with ruff."""
     s.run("ruff", "check", ".")
 

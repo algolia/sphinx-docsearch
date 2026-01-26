@@ -112,5 +112,8 @@ def test_correct_assistant_id_key(app: Sphinx, warning: StringIO) -> None:
     """It parses the Ask AI configuration options."""
     app.build()
     warnings = warning.getvalue()
-    assert "The docsearch_askai config value must have an assistant_id key." not in warnings
+    assert (
+        "The docsearch_askai config value must have an assistant_id key."
+        not in warnings
+    )
     assert app.config.docsearch_askai == {"assistantId": "test_docsearch_assistant_id"}
