@@ -81,20 +81,6 @@ def build(s: nox.Session) -> None:
 
 
 @nox.session(python=False)
-def export(s: nox.Session) -> None:
-    """Export dependencies for ReadTheDocs."""
-    s.run(
-        "uv",
-        "export",
-        "--group=docs",
-        "--no-hashes",
-        "--python=3.14",
-        "--output-file=docs/requirements.txt",
-        external=True,
-    )
-
-
-@nox.session(python=False)
 def clean(s: nox.Session) -> None:
     """Delete artifacts."""
     s.run("rm", "-rv", "dist", "docs/_dist")
