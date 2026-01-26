@@ -13,11 +13,12 @@ the jsDelivr CDN.
 
 import re
 from pathlib import Path
+from typing import Union
 
 import httpx
 
 
-def update_docsearch_assets(timeout: float | int = 10.0) -> None:
+def update_docsearch_assets(timeout: Union[float, int] = 10.0) -> None:
     """Update the DocSearch assets."""
     with httpx.Client(timeout=timeout) as client:
         for package in ["@docsearch/js", "@docsearch/css"]:
