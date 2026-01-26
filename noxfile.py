@@ -37,8 +37,8 @@ def docs(s: nox.Session) -> None:
     s.run(sphinx_build, *args)
 
 
-@nox_uv.session
-def check_links(s: nox.Session, uv_groups=["docs"]) -> None:
+@nox_uv.session(uv_groups=["docs"])
+def check_links(s: nox.Session) -> None:
     """Check links in docs."""
     args = ["-b", "linkcheck", "docs", "docs/_dist/_links"]
 
