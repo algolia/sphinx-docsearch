@@ -1,6 +1,6 @@
 # /// script
 # dependencies = [
-#     "httpx",
+#     "niquests",
 # ]
 # ///
 
@@ -15,20 +15,20 @@ import re
 from pathlib import Path
 from typing import Union
 
-import httpx
+import niquests as nq
 
 
 def update_docsearch_assets(timeout: Union[float, int] = 10.0) -> None:
     """Update the DocSearch assets."""
-    with httpx.Client(timeout=timeout) as client:
+    with nq.Session(timeout=timeout) as session:
         for package in ["@docsearch/js", "@docsearch/css"]:
-            _download_asset(client, package)
+            _download_asset(s, package)
 
 
-def _download_asset(client: httpx.Client, package: str) -> None:
+def _download_asset(session: nq.Session, package: str, version: str = "4") -> None:
     """Download an asset from jsDelivr."""
-    cdn_uri = f"https://cdn.jsdelivr.net/npm/{package}@4"
-    response = client.get(cdn_uri)
+    cdn_uri = f"https://cdn.jsdelivr.net/npm/{package}@{version}"
+    response = session.get(cdn_uri)
     response.raise_for_status()
     output = package.replace("@", "").replace("/", ".")
     output_path = Path("src/sphinx_docsearch/static/").resolve()
