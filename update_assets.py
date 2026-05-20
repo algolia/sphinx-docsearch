@@ -22,7 +22,7 @@ def update_docsearch_assets(timeout: Union[float, int] = 10.0) -> None:
     """Update the DocSearch assets."""
     with nq.Session(timeout=timeout) as session:
         for package in ["@docsearch/js", "@docsearch/css"]:
-            _download_asset(s, package)
+            _download_asset(session, package)
 
 
 def _download_asset(session: nq.Session, package: str, version: str = "4") -> None:
@@ -33,7 +33,9 @@ def _download_asset(session: nq.Session, package: str, version: str = "4") -> No
     output = package.replace("@", "").replace("/", ".")
     output_path = Path("src/sphinx_docsearch/static/").resolve()
     with open(Path(output_path / output).absolute(), "w") as f:
-        f.write(re.sub(r"//#.*\n$", "", response.text))
+        text = response.text
+        if text is not None:
+            f.write(re.sub(r"//#.*\n$", "", text))
 
 
 if __name__ == "__main__":
