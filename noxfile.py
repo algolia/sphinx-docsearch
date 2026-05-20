@@ -71,7 +71,7 @@ def tests(s: nox.Session) -> None:
 @nox_uv.session(python=python_versions, uv_groups=["typecheck"])
 def typecheck(s: nox.Session) -> None:
     """Typecheck."""
-    s.run("pyright")
+    s.run("ty", "check")
 
 
 @nox.session(python=False)
