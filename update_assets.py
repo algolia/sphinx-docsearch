@@ -34,8 +34,8 @@ def _download_asset(session: nq.Session, package: str, version: str = "4") -> No
     output_path = Path("src/sphinx_docsearch/static/").resolve()
     with open(Path(output_path / output).absolute(), "w") as f:
         text = response.text
-        assert text is not None
-        f.write(re.sub(r"//#.*\n$", "", text))
+        if text is not None:
+            f.write(re.sub(r"//#.*\n$", "", text))
 
 
 if __name__ == "__main__":
