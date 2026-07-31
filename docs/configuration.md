@@ -29,6 +29,32 @@ To get started, see [Ask AI (DocSearch)](https://docsearch.algolia.com/docs/v4/a
 `docsearch_askai`
 : A string or dictionary with [Ask AI settings](https://docsearch.algolia.com/docs/api#askai).
 
+  Use a string for the simple setup with just your Ask AI assistant ID:
+
+  ```python
+  docsearch_askai = "YOUR_ASSISTANT_ID"
+  ```
+
+  Use a dictionary for the [Agent Studio](https://docsearch.algolia.com/docs/docsearch#using-agent-studio-with-docsearch)
+  configuration. The `assistantId` key is required; all other keys are optional:
+
+  ```python
+  docsearch_askai = {
+      "assistantId": "YOUR_ASSISTANT_ID",
+      "agentStudio": True,
+      "searchParameters": {
+          "YOUR_INDEX_NAME": {
+              "filters": "type:content AND language:en",
+          },
+      },
+  }
+  ```
+
+  :::{note}
+  When `agentStudio` is `True`, `searchParameters` must be keyed by index name,
+  because Agent Studio can query multiple indices.
+  :::
+
 ## Optional configuration
 
 The Sphinx extension lets you configure these aspects of the DocSearch UI.

@@ -56,7 +56,7 @@ def check_config(app: Sphinx, config: Config) -> None:
         and "assistantId" not in config.docsearch_askai
     ):
         logger.warning(
-            msg=__("The docsearch_askai config value must have an assistant_id key.")
+            msg=__("The docsearch_askai config value must have an assistantId key.")
         )
 
 
