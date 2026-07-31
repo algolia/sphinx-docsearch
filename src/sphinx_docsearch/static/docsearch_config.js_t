@@ -4,7 +4,7 @@ docsearch({
   apiKey: "{{ docsearch_api_key }}",
   indexName: "{{ docsearch_index_name }}",
   {%- if docsearch_askai %}
-  askAi: {{ docsearch_askai|tojson }}
+  askAi: {{ docsearch_askai|tojson }},
   {%- endif %}
   {%- if docsearch_initial_query %}
   initialQuery: "{{ docsearch_initial_query }}",
