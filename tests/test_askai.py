@@ -31,7 +31,10 @@ def test_askai_string_form(app: Sphinx) -> None:
         "extensions": ["sphinx_docsearch"],
         "docsearch_askai": {
             "assistantId": "test_assistant_id",
-            "agentStudio": {"enabled": True},
+            "agentStudio": True,
+            "searchParameters": {
+                "test_index": {"filters": "type:content"},
+            },
         },
     },
 )
@@ -40,7 +43,9 @@ def test_askai_object_form(app: Sphinx) -> None:
     app.build()
     config_js = read_config_js(app)
     assert '"assistantId": "test_assistant_id"' in config_js
-    assert '"agentStudio"' in config_js
+    assert '"agentStudio": true' in config_js
+    # searchParameters keyed by index name for Agent Studio's multi-index support.
+    assert '"searchParameters": {"test_index":' in config_js
 
 
 @pytest.mark.sphinx(
