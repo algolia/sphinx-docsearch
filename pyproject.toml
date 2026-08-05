@@ -54,7 +54,7 @@ ignore = ["D203", "D213", "E501"]
 include = ["src", "noxfile.py", "update_assets.py"]
 
 [build-system]
-requires = ["uv_build>=0.9.26,<0.10.0"]
+requires = ["uv_build>=0.9.26,<0.13.0"]
 build-backend = "uv_build"
 
 [dependency-groups]

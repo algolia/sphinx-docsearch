@@ -23,6 +23,7 @@ jobs:
               - "docs/**"
   docs:
     strategy:
+      fail-fast: false
       matrix:
         python-version:
           - "3.9"
@@ -38,7 +39,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
       - name: Install nox
-        run: uv tool install nox --with=nox_uv
+        run: uv tool install --python 3.14 nox --with=nox_uv
       - name: Build docs with ${{ matrix.theme }}
         run: nox -p ${{ matrix.python-version }} -s docs -- -t ${{ matrix.theme }}
         env:
@@ -47,6 +48,7 @@ jobs:
           DOCSEARCH_INDEX_NAME: test
   test:
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.9", "3.14"]
     name: Test with Python ${{ matrix.python-version }}
@@ -59,7 +61,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
       - name: Install nox
-        run: uv tool install nox --with=nox_uv
+        run: uv tool install --python 3.14 nox --with=nox_uv
       - name: Run workflow
         run: nox -p ${{ matrix.python-version }}
         env:
@@ -77,7 +79,7 @@ jobs:
           python-version: "3.14"
           enable-cache: true
       - name: Install nox
-        run: uv tool install nox --with=nox_uv
+        run: uv tool install --python 3.14 nox --with=nox_uv
       - name: Lint Python code
         run: nox -s lint
   linkcheck:
@@ -93,7 +95,7 @@ jobs:
           python-version: "3.14"
           enable-cache: true
       - name: Install nox
-        run: uv tool install nox --with=nox_uv
+        run: uv tool install --python 3.14 nox --with=nox_uv
       - name: Check links
         run: nox -s check_links
   build:
