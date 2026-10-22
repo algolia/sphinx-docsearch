@@ -12,7 +12,7 @@ jobs:
       - uses: astral-sh/setup-uv@v7
         with:
           version: "latest"
-          python-version: "3.14"
+          python-version: "3.15.1"
           enable-cache: true
       - name: Update assets
         run: uv run update_assets.py

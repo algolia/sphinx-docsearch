@@ -1,6 +1,6 @@
 [project]
 name = "sphinx-docsearch"
-version = "0.3.1"
+version = "0.3.2"
 description = "A Sphinx extension for replacing the built-in search with Algolia DocSearch"
 readme = "README.md"
 authors = [
@@ -19,7 +19,8 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14"
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15"
 ]
 dependencies = [
   "sphinx>7,<10"
